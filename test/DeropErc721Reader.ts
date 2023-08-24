@@ -28,6 +28,7 @@ describe("Test Erc721 Reader", function () {
       const bleuBeetleAddress = "0x0Fe7B48225f2c7E24952747F5D644Ba9937a199E"
       const claimData = await erc721Reader.getClaimIllegebilityData(bleuBeetleAddress, owner.address)
       console.log(JSON.stringify(claimData))
+
     });
   });
 });

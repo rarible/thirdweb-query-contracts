@@ -57,6 +57,8 @@ contract DropERC721Reader {
         uint256 nextTokenIdToClaim;
         string name;
         string symbol;
+        string contractURI;
+        uint256 baseURICount;
     }
 
     constructor() {
@@ -93,6 +95,8 @@ contract DropERC721Reader {
         _globalData.nextTokenIdToClaim = drop.nextTokenIdToClaim();
         _globalData.name = drop.name();
         _globalData.symbol = drop.symbol();
+        _globalData.contractURI = drop.contractURI();
+        _globalData.baseURICount = drop.getBaseURICount();
         return (_activeClaimConditionIndex, _conditions, _globalData);
     }
 }
