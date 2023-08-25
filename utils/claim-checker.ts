@@ -17,41 +17,45 @@ import {
 } from "@thirdweb-dev/sdk";
 import {BigNumber, utils} from "ethers";
 import {DropERC721Reader} from "../typechain-types";
+import {DropERC721} from "../typechain-types";
 import {IClaimCondition} from "../typechain-types/contracts/drop-reader/DropERC721Reader";
+import {ThirdwebStorage} from "@thirdweb-dev/storage";
+import {SnapshotFormatVersion} from "@thirdweb-dev/sdk/dist/declarations/src/evm/common/sharded-merkle-tree";
+import { AddressZero } from "@ethersproject/constants";
 
-// TODO rewrite
-// async function getClaimerProofs(
-//     claimerAddress: string,
-//     claimCondition: IClaimCondition.ClaimConditionStructOutput,
-//     merkleRootArray: Uint8Array,
-//     collectionUri: string,
-//     storage: ThirdwebStorage
-// ): Promise<SnapshotEntryWithProof | null> {
-//     claimCondition.metadata.
-//     const merkleRoot = claimCondition.merkleRoot;
-//     if (merkleRootArray.length > 0) {
-//         const metadata = await storage.downloadJSON(collectionUri);
-//         return await fetchSnapshotEntryForAddress(
-//             claimerAddress,
-//             merkleRoot.toString(),
-//             metadata.merkle,
-//             this.contractWrapper.getProvider(),
-//             this.storage,
-//             this.getSnapshotFormatVersion(),
-//         );
-//     } else {
-//         return null;
-//     }
-// }
+async function getClaimerProofs(
+    claimerAddress: string,
+    claimCondition: IClaimCondition.ClaimConditionStructOutput,
+    merkleRootArray: Uint8Array,
+    collectionUri: string,
+    storage: ThirdwebStorage,
+    sdk: ThirdwebSDK
+): Promise<SnapshotEntryWithProof | null> {
+    const merkleRoot = claimCondition.merkleRoot;
+    if (merkleRootArray.length > 0) {
+        const metadata = await storage.downloadJSON(collectionUri);
+        return await fetchSnapshotEntryForAddress(
+            claimerAddress,
+            merkleRoot.toString(),
+            metadata.merkle,
+            sdk.getProvider(),
+            storage,
+            SnapshotFormatVersion.V2,
+        );
+    } else {
+        return null;
+    }
+}
 
 export async function  getClaimIneligibilityReasons(
     erc721Reader: DropERC721Reader,
+    erc721: DropERC721,
     collectionAddress: string,
     quantity: BigNumber,
-    addressToCheck?: string,
-    sdk: ThirdwebSDK
+    storage: ThirdwebStorage,
+    sdk: ThirdwebSDK,
+    addressToCheck?: string
 ): Promise<ClaimEligibility | null>   {
-    let reason: ClaimEligibility = null;
     let activeConditionIndex: BigNumber;
     let claimCondition: ClaimCondition;
 
@@ -77,29 +81,35 @@ export async function  getClaimIneligibilityReasons(
         const hasAllowList = merkleRootArray.length > 0;
         let allowListEntry: SnapshotEntryWithProof | null = null;
         if (hasAllowList) {
-            // TODO
-            allowListEntry = await sdk.getClaimerProofs(addressToCheck);
+            allowListEntry = await getClaimerProofs(
+                addressToCheck,
+                claimCondition,
+                merkleRootArray,
+                illegebilityData.globalData.contractURI,
+                storage,
+                sdk);
 
             if(!allowListEntry) {
                 return ClaimEligibility.AddressNotAllowed;
             }
 
+            if (
+                claimCondition.quantityLimitPerWallet.gt(0) &&
+                BigNumber.from(allowListEntry.maxClaimable).lt(illegebilityData.globalData.claimedByUser.add(quantity))
+            ) {
+                return ClaimEligibility.OverMaxClaimablePerWallet;
+            }
+
             if (allowListEntry) {
                 try {
-                    // TODO
-                    await this.contractWrapper.readContract.verifyClaim(
-                        activeConditionIndex,
-                        resolvedAddress,
-                        quantity,
-                        claimVerification.currencyAddress,
-                        claimVerification.price,
-                        {
-                            proof: claimVerification.proofs,
-                            quantityLimitPerWallet: claimVerification.maxClaimable,
-                            currency: claimVerification.currencyAddressInProof,
-                            pricePerToken: claimVerification.priceInProof,
-                        } as IDropSinglePhase.AllowlistProofStruct,
-                    );
+                    const currencyAddress = allowListEntry.currencyAddress || AddressZero
+                    const price = BigNumber.from(allowListEntry.price)
+                    await erc721.verifyClaim(activeConditionIndex, addressToCheck, quantity, currencyAddress, price, {
+                        proof: allowListEntry.proof,
+                        quantityLimitPerWallet: allowListEntry.maxClaimable,
+                        currency: currencyAddress,
+                        pricePerToken: price
+                    })
                 } catch (e: any) {
                     console.warn(
                         "Merkle proof verification failed:",
@@ -121,6 +131,21 @@ export async function  getClaimIneligibilityReasons(
                     }
                 }
             }
+
+            // public phase without allow list
+        } else {
+            // check quantity
+            if(claimCondition.quantityLimitPerWallet.lt(quantity)) {
+                return ClaimEligibility.OverMaxClaimablePerWallet;
+            }
+            // check value
+
+            if (claimCondition.pricePerToken.gt(0)) {
+                const totalPrice = claimCondition.pricePerToken.mul(quantity);
+                if(illegebilityData.globalData.userBalance.lt(totalPrice)) {
+                    return ClaimEligibility.NotEnoughTokens;
+                }
+            }
         }
     } catch (err: any) {
         if (
@@ -133,73 +158,5 @@ export async function  getClaimIneligibilityReasons(
         return ClaimEligibility.Unknown;
     }
 
-// TODO check qty
-if (
-    this.isNewSinglePhaseDrop(this.contractWrapper) ||
-    this.isNewMultiphaseDrop(this.contractWrapper)
-) {
-    let claimedSupply = BigNumber.from(0);
-    let maxClaimable = convertQuantityToBigNumber(
-        claimCondition.maxClaimablePerWallet,
-        decimals,
-    );
-
-    try {
-        claimedSupply = await this.getSupplyClaimedByWallet(resolvedAddress);
-    } catch (e) {
-        // no-op
-    }
-
-    if (allowListEntry) {
-        maxClaimable = convertQuantityToBigNumber(
-            allowListEntry.maxClaimable,
-            decimals,
-        );
-    }
-
-    if (
-        maxClaimable.gt(0) &&
-        maxClaimable.lt(claimedSupply.add(quantityWithDecimals))
-    ) {
-        reasons.push(ClaimEligibility.OverMaxClaimablePerWallet);
-        return reasons;
-    }
-
-    // if there is no allowlist, or if there is an allowlist and the address is not in it
-    // if maxClaimable is 0, we consider it as the address is not allowed
-    if (!hasAllowList || (hasAllowList && !allowListEntry)) {
-        if (maxClaimable.lte(claimedSupply) || maxClaimable.eq(0)) {
-            reasons.push(ClaimEligibility.AddressNotAllowed);
-            return reasons;
-        }
-    }
-}
-
-// TODO check price
-// if not within a browser conetext, check for wallet balance.
-// In browser context, let the wallet do that job
-if (claimCondition.price.gt(0) && isNode()) {
-    const totalPrice = claimCondition.price.mul(BigNumber.from(quantity));
-    const provider = this.contractWrapper.getProvider();
-    if (isNativeToken(claimCondition.currencyAddress)) {
-        const balance = await provider.getBalance(resolvedAddress);
-        if (balance.lt(totalPrice)) {
-            reasons.push(ClaimEligibility.NotEnoughTokens);
-        }
-    } else {
-        const erc20 = new ContractWrapper<IERC20>(
-            provider,
-            claimCondition.currencyAddress,
-            ERC20Abi,
-            {},
-            this.storage,
-        );
-        const balance = await erc20.readContract.balanceOf(resolvedAddress);
-        if (balance.lt(totalPrice)) {
-            reasons.push(ClaimEligibility.NotEnoughTokens);
-        }
-    }
-}
-
-return reasons;
+    return null;
 }

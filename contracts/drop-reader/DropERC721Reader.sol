@@ -45,6 +45,7 @@ import "../extension/DefaultOperatorFiltererUpgradeable.sol";
 
 import "../drop/DropERC721.sol";
 import "hardhat/console.sol";
+import "../eip/interface/IERC20.sol";
 
 contract DropERC721Reader {
 
@@ -59,7 +60,11 @@ contract DropERC721Reader {
         string symbol;
         string contractURI;
         uint256 baseURICount;
+        uint256 userBalance;
     }
+
+    address public constant NATIVE1 = 0x0000000000000000000000000000000000000000;
+    address public constant NATIVE2 = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
     constructor() {
 
@@ -83,10 +88,18 @@ contract DropERC721Reader {
             IClaimCondition.ClaimCondition memory condition = drop.getClaimConditionById(i);
             _conditions[i] = condition;
         }
+        DropERC721Reader.GlobalData memory _globalData;
         if(stopConditionIndex > 0) {
             _claimedByUser = drop.getSupplyClaimedByWallet(_activeClaimConditionIndex, _claimer);
+            IClaimCondition.ClaimCondition memory condition = drop.getClaimConditionById(_activeClaimConditionIndex);
+            if(condition.currency == NATIVE1 || condition.currency == NATIVE2) {
+                _globalData.userBalance = _claimer.balance;
+            } else {
+                _globalData.userBalance = IERC20(condition.currency).balanceOf(_claimer);
+            }
+
         }
-        DropERC721Reader.GlobalData memory _globalData;
+
         _globalData.totalMinted = drop.totalMinted();
         _globalData.claimedByUser = _claimedByUser;
         _globalData.totalSupply = drop.totalSupply();
@@ -97,6 +110,7 @@ contract DropERC721Reader {
         _globalData.symbol = drop.symbol();
         _globalData.contractURI = drop.contractURI();
         _globalData.baseURICount = drop.getBaseURICount();
+
         return (_activeClaimConditionIndex, _conditions, _globalData);
     }
 }
