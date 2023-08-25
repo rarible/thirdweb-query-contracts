@@ -57,7 +57,6 @@ export async function  getClaimIneligibilityReasons(
     addressToCheck?: string
 ): Promise<ClaimEligibility | null>   {
     let activeConditionIndex: BigNumber;
-    let claimCondition: ClaimCondition;
 
     // if we have been unable to get a signer address, we can't check eligibility, so return a NoWallet error reason
     if (!addressToCheck) {
