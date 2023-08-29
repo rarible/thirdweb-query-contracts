@@ -103,7 +103,15 @@ describe("Test Erc721 Reader", function () {
     });
 
     it("can claim private", async function () {
-
+      const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
+      console.log(JSON.stringify(claimData))
+      const contract = await sdk.getContract(collectionAddress, "nft-drop")
+      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(3, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 3, storage, sdk, owner.address)
+      console.log(claimReason)
+      assert(claimReason == null)
     });
   });
 });

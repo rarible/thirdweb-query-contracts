@@ -99,7 +99,7 @@ export async function  getClaimIneligibilityReasons(
             }
 
             if (
-                claimCondition.quantityLimitPerWallet.lt(illegebilityData.globalData.claimedByUser.add(quantity)) ||
+                claimCondition.quantityLimitPerWallet.gt(0) &&
                 BigNumber.from(allowListEntry.maxClaimable).lt(illegebilityData.globalData.claimedByUser.add(quantity))
             ) {
                 return ClaimEligibility.OverMaxClaimablePerWallet;
@@ -107,12 +107,12 @@ export async function  getClaimIneligibilityReasons(
 
             if (allowListEntry) {
                 try {
-                    const currencyAddress = allowListEntry.currencyAddress || AddressZero
-                    const price = BigNumber.from(allowListEntry.price)
-                    await erc721.verifyClaim(activeConditionIndex, addressToCheck, quantity, currencyAddress, price, {
+                    const currencyAddress = allowListEntry.currencyAddress || '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+                    const price = BigNumber.from(allowListEntry.price === undefined ? BigNumber.from('115792089237316195423570985008687907853269984665640564039457584007913129639935') : allowListEntry.price)
+                    await erc721.verifyClaim(activeConditionIndex, addressToCheck, price, currencyAddress, price, {
                         proof: allowListEntry.proof,
                         quantityLimitPerWallet: allowListEntry.maxClaimable,
-                        currency: currencyAddress,
+                        currency: AddressZero,
                         pricePerToken: price
                     })
                 } catch (e: any) {
