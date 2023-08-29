@@ -82,12 +82,16 @@ contract DropERC721Reader {
         uint256 _activeClaimConditionIndex = drop.getActiveClaimConditionId();
 
         (uint256 startConditionIndex,uint256 stopConditionIndex)  = drop.claimCondition();
-        IClaimCondition.ClaimCondition[]  memory _conditions = new IClaimCondition.ClaimCondition[](stopConditionIndex);
         uint256 _claimedByUser = 0;
-        for (uint i = 0; i < stopConditionIndex; i++) {
-            IClaimCondition.ClaimCondition memory condition = drop.getClaimConditionById(i);
-            _conditions[i] = condition;
+        if(stopConditionIndex != 0) {
+            conditions = new IClaimCondition.ClaimCondition[](stopConditionIndex);
+            
+            for (uint i = 0; i < stopConditionIndex; i++) {
+                IClaimCondition.ClaimCondition memory condition = drop.getClaimConditionById(i);
+                conditions[i] = condition;
+            }
         }
+
         DropERC721Reader.GlobalData memory _globalData;
         if(stopConditionIndex > 0) {
             _claimedByUser = drop.getSupplyClaimedByWallet(_activeClaimConditionIndex, _claimer);
@@ -111,6 +115,6 @@ contract DropERC721Reader {
         _globalData.contractURI = drop.contractURI();
         _globalData.baseURICount = drop.getBaseURICount();
 
-        return (_activeClaimConditionIndex, _conditions, _globalData);
+        return (_activeClaimConditionIndex, conditions, _globalData);
     }
 }

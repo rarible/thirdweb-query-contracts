@@ -20,7 +20,6 @@ import {DropERC721Reader} from "../typechain-types";
 import {DropERC721} from "../typechain-types";
 import {IClaimCondition} from "../typechain-types/contracts/drop-reader/DropERC721Reader";
 import {ThirdwebStorage} from "@thirdweb-dev/storage";
-import {SnapshotFormatVersion} from "@thirdweb-dev/sdk/dist/declarations/src/evm/common/sharded-merkle-tree";
 import { AddressZero } from "@ethersproject/constants";
 
 async function getClaimerProofs(
@@ -40,7 +39,7 @@ async function getClaimerProofs(
             metadata.merkle,
             sdk.getProvider(),
             storage,
-            SnapshotFormatVersion.V2,
+            2,
         );
     } else {
         return null;
@@ -51,7 +50,7 @@ export async function  getClaimIneligibilityReasons(
     erc721Reader: DropERC721Reader,
     erc721: DropERC721,
     collectionAddress: string,
-    quantity: BigNumber,
+    quantity: number,
     storage: ThirdwebStorage,
     sdk: ThirdwebSDK,
     addressToCheck?: string

@@ -18,6 +18,16 @@ const config: HardhatUserConfig = {
         url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
         blockNumber: 46470180
       }
+    },
+    polygon: {
+      url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      mainnet: "P78HUI9K9SAM5QKD6ABU91G3CPDS98MZW2",
+      polygon: "5KZMXJXAZRC311U3YZ916DS7Y1US8Y4TT1",
     }
   }
 };
