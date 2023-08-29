@@ -39,6 +39,6 @@
     "compile": "hardhat compile",
     "test": "hardhat test --network polygon",
     "deploy": "hardhat run scripts/deploy.ts --network polygon",
-    "verify": "hardhat verify 0xF1F969956223534e85603ABA028d667C666F3f78 --network polygon"
+    "verify": "hardhat verify 0xCBeD96776B9b7b4b6daBa8A2EE90C0cF26b97665 --network polygon"
   }
 }
