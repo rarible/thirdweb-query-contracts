@@ -6,9 +6,10 @@ import { network } from "hardhat"
 import {DropERC721Reader, DropERC721Reader__factory} from "../typechain-types";
 import {DropERC721, DropERC721__factory} from "../typechain-types";
 import {SignerWithAddress} from "@nomiclabs/hardhat-ethers/signers";
-import {ThirdwebSDK} from "@thirdweb-dev/sdk";
+import {ClaimEligibility, ThirdwebSDK} from "@thirdweb-dev/sdk";
 import {ThirdwebStorage} from "@thirdweb-dev/storage";
 import {getClaimIneligibilityReasons} from "../utils/claim-checker";
+import { assert } from "console";
 
 const { mine } = require("@nomicfoundation/hardhat-network-helpers");
 
@@ -39,22 +40,50 @@ describe("Test Erc721 Reader", function () {
   });
 
   describe("reader test", function () {
-    it("no claim condition", async function () {
+    it("There is no claim condition set.", async function () {
       const collectionAddress = "0x0Fe7B48225f2c7E24952747F5D644Ba9937a199E"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
       const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
       console.log(JSON.stringify(claimData))
-      const contract = sdk.getContract(collectionAddress, "nft-drop")
+      const contract = await sdk.getContract(collectionAddress, "nft-drop")
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 1, storage, sdk, owner.address)
       console.log(claimReason)
+      assert(claimReason == ClaimEligibility.NoClaimConditionSet)
+    });
+    
+    it("This address is not on the allowlist.", async function () {
+      const collectionAddress = "0xA00412829A4fFB09b5a85042941f8EC4B2F385cA"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
+      console.log(JSON.stringify(claimData))
+      const contract = await sdk.getContract(collectionAddress, "nft-drop")
+      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(1, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 1, storage, sdk, owner.address)
+      console.log(claimReason)
+      assert(claimReason == ClaimEligibility.AddressNotAllowed)
     });
 
-    it("not in a whitelist", async function () {
+    // NotEnoughSupply = "There is not enough supply to claim.",
+    // WaitBeforeNextClaimTransaction = "Not enough time since last claim transaction. Please wait.",
+    // ClaimPhaseNotStarted = "Claim phase has not started yet.",
+    // AlreadyClaimed = "You have already claimed the token.",
+    // WrongPriceOrCurrency = "Incorrect price or currency.",
+    // OverMaxClaimablePerWallet = "Cannot claim more than maximum allowed quantity.",
+    // NotEnoughTokens = "There are not enough tokens in the wallet to pay for the claim.",
+    // NoActiveClaimPhase = "There is no active claim phase at the moment. Please check back in later.",
+    // NoWallet = "No wallet connected.",
+    // Unknown = "No claim conditions found."
 
-    });
-
-    it("qty exceed for whitelist", async function () {
-
+    it("Cannot claim more than maximum allowed quantity.", async function () {
+      const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
+      console.log(JSON.stringify(claimData))
+      const contract = await sdk.getContract(collectionAddress, "nft-drop")
+      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(4, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 4, storage, sdk, owner.address)
+      console.log(claimReason)
+      assert(claimReason == ClaimEligibility.OverMaxClaimablePerWallet)
     });
 
     it("qty exceed for collection(all minted)", async function () {

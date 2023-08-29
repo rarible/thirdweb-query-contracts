@@ -33,6 +33,13 @@ async function getClaimerProofs(
     const merkleRoot = claimCondition.merkleRoot;
     if (merkleRootArray.length > 0) {
         const metadata = await storage.downloadJSON(collectionUri);
+        // console.log("fetchSnapshotEntryForAddress",
+        //     claimerAddress,
+        //     merkleRoot.toString(),
+        //     metadata.merkle,
+        //     sdk.getProvider(),
+        //     storage,
+        //     2)
         return await fetchSnapshotEntryForAddress(
             claimerAddress,
             merkleRoot.toString(),
@@ -92,7 +99,7 @@ export async function  getClaimIneligibilityReasons(
             }
 
             if (
-                claimCondition.quantityLimitPerWallet.gt(0) &&
+                claimCondition.quantityLimitPerWallet.lt(illegebilityData.globalData.claimedByUser.add(quantity)) ||
                 BigNumber.from(allowListEntry.maxClaimable).lt(illegebilityData.globalData.claimedByUser.add(quantity))
             ) {
                 return ClaimEligibility.OverMaxClaimablePerWallet;
