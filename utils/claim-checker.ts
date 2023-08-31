@@ -129,7 +129,6 @@ export function prepareClaim(
 export async function  getClaimIneligibilityReasons(
     erc721Reader: DropERC721Reader,
     erc721: DropERC721,
-    collectionAddress: string,
     quantity: number,
     storage: ThirdwebStorage,
     sdk: ThirdwebSDK,
@@ -143,7 +142,7 @@ export async function  getClaimIneligibilityReasons(
     }
 
     try {
-        const illegebilityData = await erc721Reader.getClaimIllegebilityData(collectionAddress, addressToCheck)
+        const illegebilityData = await erc721Reader.getClaimIllegebilityData(erc721.address, addressToCheck)
         if(illegebilityData.conditions.length == 0) {
             return ClaimEligibility.NoClaimConditionSet;
         }

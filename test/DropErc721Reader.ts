@@ -46,7 +46,7 @@ describe("Test Erc721 Reader", function () {
       const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
       console.log(JSON.stringify(claimData))
       const contract = await sdk.getContract(collectionAddress, "nft-drop")
-      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 1, storage, sdk, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
       console.log(claimReason)
       assert(claimReason == ClaimEligibility.NoClaimConditionSet)
     });
@@ -58,7 +58,7 @@ describe("Test Erc721 Reader", function () {
       console.log(JSON.stringify(claimData))
       const contract = await sdk.getContract(collectionAddress, "nft-drop")
       const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(1, owner.address)
-      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 1, storage, sdk, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
       console.log(claimReason)
       assert(claimReason == ClaimEligibility.AddressNotAllowed)
     });
@@ -81,7 +81,7 @@ describe("Test Erc721 Reader", function () {
       console.log(JSON.stringify(claimData))
       const contract = await sdk.getContract(collectionAddress, "nft-drop")
       const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(4, owner.address)
-      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 4, storage, sdk, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 4, storage, sdk, owner.address)
       console.log(claimReason)
       assert(claimReason == ClaimEligibility.OverMaxClaimablePerWallet)
     });
@@ -109,7 +109,7 @@ describe("Test Erc721 Reader", function () {
       console.log(JSON.stringify(claimData))
       const contract = await sdk.getContract(collectionAddress, "nft-drop")
       const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(3, owner.address)
-      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 3, storage, sdk, owner.address)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
       console.log(claimReason, res)
       assert(claimReason == null)
     });
