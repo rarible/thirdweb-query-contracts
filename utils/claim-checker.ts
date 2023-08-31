@@ -10,12 +10,12 @@
  */
 import {
     ClaimCondition,
-    ClaimEligibility,
+    ClaimEligibility, ClaimVerification,
     fetchSnapshotEntryForAddress,
-    includesErrorMessage,
+    includesErrorMessage, normalizePriceValue,
     SnapshotEntryWithProof, ThirdwebSDK
 } from "@thirdweb-dev/sdk";
-import {BigNumber, utils} from "ethers";
+import {BigNumber, ethers, utils} from "ethers";
 import {DropERC721Reader} from "../typechain-types";
 import {DropERC721} from "../typechain-types";
 import {IClaimCondition} from "../typechain-types/contracts/drop-reader/DropERC721Reader";
@@ -53,6 +53,79 @@ async function getClaimerProofs(
     }
 }
 
+export function prepareClaim(
+    addressToClaim: string,
+    quantity: number,
+    activeClaimCondition: IClaimCondition.ClaimConditionStructOutput,
+    snapshotEntry: SnapshotEntryWithProof
+): ClaimVerification {
+    let maxClaimable = BigNumber.from(0);
+    let proofs = [utils.hexZeroPad([0], 32)];
+    let priceInProof: BigNumber | undefined = snapshotEntry.price ? BigNumber.from(snapshotEntry.price) : undefined; // the price to send to the contract in claim proofs
+    let currencyAddressInProof = snapshotEntry.currencyAddress;
+    try {
+
+
+            if (snapshotEntry) {
+                proofs = snapshotEntry.proof;
+                // override only if not default values (unlimited for quantity, zero addr for currency)
+                maxClaimable =
+                    snapshotEntry.maxClaimable === "unlimited"
+                        ? ethers.constants.MaxUint256
+                        : BigNumber.from(snapshotEntry.maxClaimable);
+                priceInProof =
+                    snapshotEntry.price === undefined ||
+                    snapshotEntry.price === "unlimited"
+                        ? ethers.constants.MaxUint256
+                        : ethers.utils.parseEther(snapshotEntry.price);
+                currencyAddressInProof =
+                    snapshotEntry.currencyAddress || ethers.constants.AddressZero;
+            }
+
+    } catch (e) {
+        // have to handle the valid error case that we *do* want to throw on
+        if ((e as Error)?.message === "No claim found for this address") {
+            throw e;
+        }
+        // other errors we wanna ignore and try to continue
+        console.warn(
+            "failed to check claim condition merkle root hash, continuing anyways",
+            e,
+        );
+    }
+
+    // the actual price to check allowance against
+    // if proof price is unlimited, then we use the price from the claim condition
+    // this mimics the contract behavior
+    if(!priceInProof) {
+        priceInProof = BigNumber.from(0)
+    } 
+    const pricePerToken =
+        priceInProof.toString() !== ethers.constants.MaxUint256.toString()
+            ? priceInProof
+            : activeClaimCondition.pricePerToken;
+    // same for currency address
+    if(!currencyAddressInProof) {
+        currencyAddressInProof = ethers.constants.AddressZero
+    }
+
+    const currencyAddress =
+        currencyAddressInProof !== ethers.constants.AddressZero
+            ? currencyAddressInProof
+            : activeClaimCondition.currency;
+
+    return {
+        overrides: {blockTag: undefined, from: addressToClaim},
+        proofs,
+        maxClaimable,
+        price: pricePerToken,
+        currencyAddress: currencyAddress,
+        priceInProof,
+        currencyAddressInProof,
+    };
+}
+
+
 export async function  getClaimIneligibilityReasons(
     erc721Reader: DropERC721Reader,
     erc721: DropERC721,
@@ -75,7 +148,7 @@ export async function  getClaimIneligibilityReasons(
             return ClaimEligibility.NoClaimConditionSet;
         }
         activeConditionIndex = illegebilityData.activeClaimConditionIndex
-        const claimCondition = illegebilityData.conditions[activeConditionIndex.toNumber()]
+        const claimCondition = illegebilityData.conditions[activeConditionIndex.toNumber()] as IClaimCondition.ClaimConditionStructOutput
 
         if ((claimCondition.maxClaimableSupply.sub(claimCondition.supplyClaimed)).lt(quantity)) {
             return ClaimEligibility.NotEnoughSupply;
@@ -107,13 +180,22 @@ export async function  getClaimIneligibilityReasons(
 
             if (allowListEntry) {
                 try {
-                    const currencyAddress = allowListEntry.currencyAddress || '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
-                    const price = BigNumber.from(allowListEntry.price === undefined ? BigNumber.from('115792089237316195423570985008687907853269984665640564039457584007913129639935') : allowListEntry.price)
-                    await erc721.verifyClaim(activeConditionIndex, addressToCheck, price, currencyAddress, price, {
-                        proof: allowListEntry.proof,
-                        quantityLimitPerWallet: allowListEntry.maxClaimable,
-                        currency: AddressZero,
-                        pricePerToken: price
+                    const claimVerification = prepareClaim(
+                        addressToCheck,
+                        quantity,
+                        claimCondition,
+                        allowListEntry)
+
+                    await erc721.verifyClaim(activeConditionIndex,
+                        addressToCheck,
+                        quantity,
+                        claimCondition.currency,
+                        claimCondition.pricePerToken,
+                        {
+                        proof: claimVerification.proofs,
+                        quantityLimitPerWallet: claimVerification.maxClaimable,
+                        currency: claimVerification.currencyAddressInProof,
+                        pricePerToken: claimVerification.priceInProof
                     })
                 } catch (e: any) {
                     console.warn(

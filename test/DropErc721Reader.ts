@@ -110,7 +110,7 @@ describe("Test Erc721 Reader", function () {
       const contract = await sdk.getContract(collectionAddress, "nft-drop")
       const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(3, owner.address)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, collectionAddress, 3, storage, sdk, owner.address)
-      console.log(claimReason)
+      console.log(claimReason, res)
       assert(claimReason == null)
     });
   });
