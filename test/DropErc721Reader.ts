@@ -40,78 +40,81 @@ describe("Test Erc721 Reader", function () {
   });
 
   describe("reader test", function () {
+
+    // NoWallet = "No wallet connected.",
     it("There is no claim condition set.", async function () {
       const collectionAddress = "0x0Fe7B48225f2c7E24952747F5D644Ba9937a199E"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
-      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
-      console.log(JSON.stringify(claimData))
-      const contract = await sdk.getContract(collectionAddress, "nft-drop")
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, undefined)
+      expect(claimReason).to.eq(ClaimEligibility.NoWallet)
+    });
+
+    it("There is no claim condition set.", async function () {
+      const collectionAddress = "0x0Fe7B48225f2c7E24952747F5D644Ba9937a199E"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
-      console.log(claimReason)
-      assert(claimReason == ClaimEligibility.NoClaimConditionSet)
+      expect(claimReason).to.eq(ClaimEligibility.NoClaimConditionSet)
     });
     
     it("This address is not on the allowlist.", async function () {
       const collectionAddress = "0xA00412829A4fFB09b5a85042941f8EC4B2F385cA"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
-      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
-      console.log(JSON.stringify(claimData))
-      const contract = await sdk.getContract(collectionAddress, "nft-drop")
-      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(1, owner.address)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
-      console.log(claimReason)
-      assert(claimReason == ClaimEligibility.AddressNotAllowed)
+      expect(claimReason).to.eq(ClaimEligibility.AddressNotAllowed)
     });
 
-    // NotEnoughSupply = "There is not enough supply to claim.",
+
     // WaitBeforeNextClaimTransaction = "Not enough time since last claim transaction. Please wait.",
     // ClaimPhaseNotStarted = "Claim phase has not started yet.",
     // AlreadyClaimed = "You have already claimed the token.",
     // WrongPriceOrCurrency = "Incorrect price or currency.",
-    // OverMaxClaimablePerWallet = "Cannot claim more than maximum allowed quantity.",
-    // NotEnoughTokens = "There are not enough tokens in the wallet to pay for the claim.",
     // NoActiveClaimPhase = "There is no active claim phase at the moment. Please check back in later.",
-    // NoWallet = "No wallet connected.",
     // Unknown = "No claim conditions found."
 
     it("Cannot claim more than maximum allowed quantity.", async function () {
       const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
-      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
-      console.log(JSON.stringify(claimData))
-      const contract = await sdk.getContract(collectionAddress, "nft-drop")
-      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(4, owner.address)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 4, storage, sdk, owner.address)
-      console.log(claimReason)
-      assert(claimReason == ClaimEligibility.OverMaxClaimablePerWallet)
+      expect(claimReason).to.eq(ClaimEligibility.OverMaxClaimablePerWallet, "Cannot claim more than maximum allowed quantity.")
     });
 
-    it("qty exceed for collection(all minted)", async function () {
+    // NotEnoughSupply = "There is not enough supply to claim.",
+    it("There is not enough supply to claim.", async function () {
+      const collectionAddress = "0x0645336C3C2A892926b18e5B85aA009805C377d8"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 4, storage, sdk, owner.address)
+      expect(claimReason).to.eq(ClaimEligibility.NotEnoughSupply, "There is not enough supply to claim.")
 
     });
 
-    it("qty exceed for public mint(max per wallet)", async function () {
-
+    // OverMaxClaimablePerWallet = "Cannot claim more than maximum allowed quantity.",
+    it("Cannot claim more than maximum allowed quantity.", async function () {
+      const collectionAddress = "0x8e0d557d99B4AB7a066327a819c579D0CfdCe3E1"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 10, storage, sdk, owner.address)
+      expect(claimReason).to.eq(ClaimEligibility.OverMaxClaimablePerWallet, "Cannot claim more than maximum allowed quantity.")
     });
 
-    it("not enought money", async function () {
-
+    // NotEnoughTokens = "There are not enough tokens in the wallet to pay for the claim.",
+    it("There are not enough tokens in the wallet to pay for the claim.", async function () {
+      const collectionAddress = "0x5fafecB2E623b84d5EE824e82d35a18DFe6B0f20"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
+      expect(claimReason).to.eq(ClaimEligibility.NotEnoughTokens, "There are not enough tokens in the wallet to pay for the claim.")
     });
 
     it("can claim public", async function () {
-
+      const collectionAddress = "0x8e0d557d99B4AB7a066327a819c579D0CfdCe3E1"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
+      expect(claimReason).to.eq(null, "Claim reason should be null for a public mint")
     });
 
     it("can claim private", async function () {
       const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
-      const claimData = await erc721Reader.getClaimIllegebilityData(collectionAddress, owner.address)
-      console.log(JSON.stringify(claimData))
-      const contract = await sdk.getContract(collectionAddress, "nft-drop")
-      const res = await contract.erc721.claimConditions.getClaimIneligibilityReasons(3, owner.address)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
-      console.log(claimReason, res)
-      assert(claimReason == null)
+      expect(claimReason).to.eq(null, "Claim reason should be null for a private mint")
     });
   });
 });

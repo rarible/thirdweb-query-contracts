@@ -153,6 +153,10 @@ export async function  getClaimIneligibilityReasons(
             return ClaimEligibility.NotEnoughSupply;
         }
 
+        if (illegebilityData.globalData.totalMinted.add(quantity).gt(illegebilityData.globalData.nextTokenIdToMint)) {
+            return ClaimEligibility.NotEnoughSupply;
+        }
+
         // check for merkle root inclusion
         const merkleRootArray = utils.stripZeros(claimCondition.merkleRoot);
         const hasAllowList = merkleRootArray.length > 0;
