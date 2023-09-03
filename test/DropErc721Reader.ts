@@ -22,7 +22,7 @@ describe("Test Erc721 Reader", function () {
   beforeEach(async function () {
     [owner] = await ethers.getSigners();
 
-    erc721Reader = await DropERC721Reader__factory.connect("0xCBeD96776B9b7b4b6daBa8A2EE90C0cF26b97665", owner)
+    erc721Reader = await DropERC721Reader__factory.connect("0x29a4bb15ECCAA8c4a0Ea4aaa455a943B3BC37016", owner)
     console.log(erc721Reader.address)
     sdk = ThirdwebSDK.fromSigner(
          owner, // Your wallet's private key (only required for write operations)
@@ -65,11 +65,17 @@ describe("Test Erc721 Reader", function () {
 
 
     // WaitBeforeNextClaimTransaction = "Not enough time since last claim transaction. Please wait.",
-    // ClaimPhaseNotStarted = "Claim phase has not started yet.",
     // AlreadyClaimed = "You have already claimed the token.",
     // WrongPriceOrCurrency = "Incorrect price or currency.",
     // NoActiveClaimPhase = "There is no active claim phase at the moment. Please check back in later.",
     // Unknown = "No claim conditions found."
+
+    it("Claim phase has not started yet.", async function () {
+      const collectionAddress = "0xe114A562C3F994859fd9077A804A3E5084D62FeF"
+      const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
+      const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
+      expect(claimReason).to.eq(ClaimEligibility.ClaimPhaseNotStarted, "Claim phase has not started yet.")
+    });
 
     it("Cannot claim more than maximum allowed quantity.", async function () {
       const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
@@ -84,7 +90,6 @@ describe("Test Erc721 Reader", function () {
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 4, storage, sdk, owner.address)
       expect(claimReason).to.eq(ClaimEligibility.NotEnoughSupply, "There is not enough supply to claim.")
-
     });
 
     // OverMaxClaimablePerWallet = "Cannot claim more than maximum allowed quantity.",

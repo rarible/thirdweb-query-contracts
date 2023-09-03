@@ -2,6 +2,7 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import { config as dotenvConfig } from "dotenv";
 import { resolve } from "path";
+import {ethers} from "ethers";
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
@@ -22,6 +23,8 @@ const config: HardhatUserConfig = {
     polygon: {
       url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [`${process.env.PRIVATE_KEY}`],
+      gas: 8000000,
+      gasPrice: ethers.utils.parseUnits('200', 'gwei').toNumber(),
     },
   },
   etherscan: {

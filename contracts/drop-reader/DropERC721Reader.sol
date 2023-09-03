@@ -61,6 +61,7 @@ contract DropERC721Reader {
         string contractURI;
         uint256 baseURICount;
         uint256 userBalance;
+        uint256 blockTimeStamp;
     }
 
     address public constant NATIVE1 = 0x0000000000000000000000000000000000000000;
@@ -83,7 +84,11 @@ contract DropERC721Reader {
         (uint256 startConditionIndex,uint256 stopConditionIndex)  = drop.claimCondition();
         uint256 _claimedByUser = 0;
         if(stopConditionIndex != 0) {
-            activeClaimConditionIndex = drop.getActiveClaimConditionId();
+            try drop.getActiveClaimConditionId() returns (uint256 _activeClaimConditionIndex) {
+                activeClaimConditionIndex = _activeClaimConditionIndex;
+            } catch {
+                activeClaimConditionIndex = 0;
+            }
             conditions = new IClaimCondition.ClaimCondition[](stopConditionIndex);
             
             for (uint i = 0; i < stopConditionIndex; i++) {
@@ -114,7 +119,7 @@ contract DropERC721Reader {
         _globalData.symbol = drop.symbol();
         _globalData.contractURI = drop.contractURI();
         _globalData.baseURICount = drop.getBaseURICount();
-
+        _globalData.blockTimeStamp = block.timestamp;
         return (activeClaimConditionIndex, conditions, _globalData);
     }
 }

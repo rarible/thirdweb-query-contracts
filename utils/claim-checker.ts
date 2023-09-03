@@ -33,13 +33,6 @@ async function getClaimerProofs(
     const merkleRoot = claimCondition.merkleRoot;
     if (merkleRootArray.length > 0) {
         const metadata = await storage.downloadJSON(collectionUri);
-        // console.log("fetchSnapshotEntryForAddress",
-        //     claimerAddress,
-        //     merkleRoot.toString(),
-        //     metadata.merkle,
-        //     sdk.getProvider(),
-        //     storage,
-        //     2)
         return await fetchSnapshotEntryForAddress(
             claimerAddress,
             merkleRoot.toString(),
@@ -149,6 +142,10 @@ export async function  getClaimIneligibilityReasons(
         activeConditionIndex = illegebilityData.activeClaimConditionIndex
         const claimCondition = illegebilityData.conditions[activeConditionIndex.toNumber()] as IClaimCondition.ClaimConditionStructOutput
 
+        if (claimCondition.startTimestamp.gt(illegebilityData.globalData.blockTimeStamp)) {
+            return ClaimEligibility.ClaimPhaseNotStarted;
+        }
+
         if ((claimCondition.maxClaimableSupply.sub(claimCondition.supplyClaimed)).lt(quantity)) {
             return ClaimEligibility.NotEnoughSupply;
         }
@@ -229,7 +226,6 @@ export async function  getClaimIneligibilityReasons(
                 return ClaimEligibility.OverMaxClaimablePerWallet;
             }
             // check value
-
             if (claimCondition.pricePerToken.gt(0)) {
                 const totalPrice = claimCondition.pricePerToken.mul(quantity);
                 if(illegebilityData.globalData.userBalance.lt(totalPrice)) {
