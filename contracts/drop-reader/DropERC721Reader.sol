@@ -71,7 +71,7 @@ contract DropERC721Reader {
 
     }
 
-    function getClaimIllegebilityData(
+    function getAllData(
         address _dropERC721,
         address _claimer
     ) public view returns (

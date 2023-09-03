@@ -135,7 +135,7 @@ export async function  getClaimIneligibilityReasons(
     }
 
     try {
-        const illegebilityData = await erc721Reader.getClaimIllegebilityData(erc721.address, addressToCheck)
+        const illegebilityData = await erc721Reader.getAllData(erc721.address, addressToCheck)
         if(illegebilityData.conditions.length == 0) {
             return ClaimEligibility.NoClaimConditionSet;
         }
