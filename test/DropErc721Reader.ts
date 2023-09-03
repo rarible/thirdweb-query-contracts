@@ -8,7 +8,7 @@ import {DropERC721, DropERC721__factory} from "../typechain-types";
 import {SignerWithAddress} from "@nomiclabs/hardhat-ethers/signers";
 import {ClaimEligibility, ThirdwebSDK} from "@thirdweb-dev/sdk";
 import {ThirdwebStorage} from "@thirdweb-dev/storage";
-import {getClaimIneligibilityReasons} from "../utils/claim-checker";
+import {getClaimIneligibilityReasons} from "../utils/get-claim-illegebility";
 import { assert } from "console";
 
 const { mine } = require("@nomicfoundation/hardhat-network-helpers");

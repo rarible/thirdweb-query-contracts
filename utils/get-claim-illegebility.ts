@@ -9,8 +9,6 @@
  */
 import {
     ClaimEligibility,
-    ClaimVerification,
-    fetchSnapshotEntryForAddress,
     includesErrorMessage,
     SnapshotEntryWithProof,
     ThirdwebSDK
