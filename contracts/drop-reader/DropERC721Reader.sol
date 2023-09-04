@@ -49,6 +49,11 @@ import "../eip/interface/IERC20.sol";
 
 contract DropERC721Reader {
 
+    struct FeeData {
+        address recipient;
+        uint256 bps;
+    }
+
     struct GlobalData {
         uint256 totalMinted;
         uint256 claimedByUser;
@@ -62,6 +67,8 @@ contract DropERC721Reader {
         uint256 baseURICount;
         uint256 userBalance;
         uint256 blockTimeStamp;
+        FeeData defaultRoyaltyInfo;
+        FeeData platformFeeInfo;
     }
 
     address public constant NATIVE1 = 0x0000000000000000000000000000000000000000;
@@ -109,17 +116,24 @@ contract DropERC721Reader {
 
         }
 
-        _globalData.totalMinted = drop.totalMinted();
-        _globalData.claimedByUser = _claimedByUser;
-        _globalData.totalSupply = drop.totalSupply();
-        _globalData.maxTotalSupply = drop.maxTotalSupply();
-        _globalData.nextTokenIdToMint = drop.nextTokenIdToMint();
-        _globalData.nextTokenIdToClaim = drop.nextTokenIdToClaim();
-        _globalData.name = drop.name();
-        _globalData.symbol = drop.symbol();
-        _globalData.contractURI = drop.contractURI();
-        _globalData.baseURICount = drop.getBaseURICount();
-        _globalData.blockTimeStamp = block.timestamp;
+        _globalData.totalMinted         = drop.totalMinted();
+        _globalData.claimedByUser       = _claimedByUser;
+        _globalData.totalSupply         = drop.totalSupply();
+        _globalData.maxTotalSupply      = drop.maxTotalSupply();
+        _globalData.nextTokenIdToMint   = drop.nextTokenIdToMint();
+        _globalData.nextTokenIdToClaim  = drop.nextTokenIdToClaim();
+        _globalData.name                = drop.name();
+        _globalData.symbol              = drop.symbol();
+        _globalData.contractURI         = drop.contractURI();
+        _globalData.baseURICount        = drop.getBaseURICount();
+        _globalData.blockTimeStamp      = block.timestamp;
+        (address rAddress, uint16 rBps)     = drop.getDefaultRoyaltyInfo();
+        _globalData.defaultRoyaltyInfo.recipient    = rAddress;
+        _globalData.defaultRoyaltyInfo.bps          = rBps;
+
+        (address pAddress, uint16 pBps)     = drop.getPlatformFeeInfo();
+        _globalData.platformFeeInfo.recipient       = pAddress;
+        _globalData.platformFeeInfo.bps             = pBps;
         return (activeClaimConditionIndex, conditions, _globalData);
     }
 }

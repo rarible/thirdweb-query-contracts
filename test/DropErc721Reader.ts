@@ -119,7 +119,7 @@ describe("Test Erc721 Reader", function () {
       const collectionAddress = "0x19cFE5f37024B2f4E48Ee090897548A48C88237C"
       const erc721Drop = DropERC721__factory.connect(collectionAddress, owner)
       const claimReason = await getClaimIneligibilityReasons(erc721Reader, erc721Drop, 1, storage, sdk, owner.address)
-      expect(claimReason).to.eq(null, "Claim reason should be null for a private mint")
+      expect(claimReason).to.eq(null, "Claim illegebility reason should be null for a private mint")
     });
   });
 });
