@@ -22,7 +22,7 @@ describe("Test Erc721 Reader", function () {
   beforeEach(async function () {
     [owner] = await ethers.getSigners();
 
-    erc721Reader = await DropERC721Reader__factory.connect("0xDE8D9086CD18988B25cE6D20Cb640C3D94c5b604", owner)
+    erc721Reader = await DropERC721Reader__factory.connect("0x5f1B0bD330fEfc7b56A4c39415d658521781bF3d", owner)
     console.log(erc721Reader.address)
     sdk = ThirdwebSDK.fromSigner(
          owner, // Your wallet's private key (only required for write operations)

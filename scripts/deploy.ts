@@ -13,7 +13,7 @@ async function main() {
     erc721Reader = await erc721Reader.deployed()
     console.log("deployment done", erc721Reader.address)
     // verify
-    await erc721Reader.deployTransaction.wait(10)
+    await erc721Reader.deployTransaction.wait(20)
     await sleep(5000);
     console.log("verify")
     await hre.run("verify:verify", {
