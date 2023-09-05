@@ -6,7 +6,7 @@ pragma solidity ^0.8.0;
 import "./IClaimConditionMultiPhase.sol";
 
 /**
- *  The interface `IDrop` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.
+ *  The interfaces `IDrop` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.
  *
  *  An authorized wallet can set a series of claim conditions, ordered by their respective `startTimestamp`.
  *  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten
@@ -48,7 +48,7 @@ interface IDrop is IClaimConditionMultiPhase {
      *  @param pricePerToken                  The price per token to pay for the claim.
      *  @param allowlistProof                 The proof of the claimer's inclusion in the merkle root allowlist
      *                                        of the claim conditions that apply.
-     *  @param data                           Arbitrary bytes data that can be leveraged in the implementation of this interface.
+     *  @param data                           Arbitrary bytes data that can be leveraged in the implementation of this interfaces.
      */
     function claim(
         address receiver,

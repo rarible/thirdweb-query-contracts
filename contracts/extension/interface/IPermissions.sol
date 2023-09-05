@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 /// @author thirdweb
 
 /**
- * @dev External interface of AccessControl declared to support ERC165 detection.
+ * @dev External interfaces of AccessControl declared to support ERC165 detection.
  */
 interface IPermissions {
     /**

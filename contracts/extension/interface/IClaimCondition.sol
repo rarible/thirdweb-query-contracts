@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 /// @author thirdweb
 
 /**
- *  The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.
+ *  The interfaces `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.
  *
  *  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten
  *  or added to by the contract admin. At any moment, there is only one active claim condition.
