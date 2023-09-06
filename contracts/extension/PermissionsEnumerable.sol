@@ -9,7 +9,7 @@ import "./Permissions.sol";
 /**
  *  @title   PermissionsEnumerable
  *  @dev     This contracts provides extending-contracts with role-based access control mechanisms.
- *           Also provides interfaces to view all members with a given role, and total count of members.
+ *           Also provides interface to view all members with a given role, and total count of members.
  */
 contract PermissionsEnumerable is IPermissionsEnumerable, Permissions {
     /**

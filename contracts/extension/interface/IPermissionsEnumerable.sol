@@ -6,7 +6,7 @@ pragma solidity ^0.8.0;
 import "./IPermissions.sol";
 
 /**
- * @dev External interfaces of AccessControlEnumerable declared to support ERC165 detection.
+ * @dev External interface of AccessControlEnumerable declared to support ERC165 detection.
  */
 interface IPermissionsEnumerable is IPermissions {
     /**

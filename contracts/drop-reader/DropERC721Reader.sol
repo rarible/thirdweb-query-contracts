@@ -45,7 +45,7 @@ import "../extension/DefaultOperatorFiltererUpgradeable.sol";
 
 import "../drop/DropERC721.sol";
 import "hardhat/console.sol";
-import "../eip/interfaces/IERC20.sol";
+import "../eip/interface/IERC20.sol";
 
 contract DropERC721Reader {
 

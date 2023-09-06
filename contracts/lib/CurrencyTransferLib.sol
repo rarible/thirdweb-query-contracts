@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 /// @author thirdweb
 
-// Helper interfaces
+// Helper interface
 import { IWETH } from "../interfaces/IWETH.sol";
 
 import "../openzeppelin-presets/token/ERC20/utils/SafeERC20.sol";
