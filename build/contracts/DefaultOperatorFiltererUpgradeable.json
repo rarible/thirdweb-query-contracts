@@ -1,0 +1,688 @@
+{
+  "contractName": "DefaultOperatorFiltererUpgradeable",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "OperatorNotAllowed",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "OperatorRestriction",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "operatorRestriction",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "_restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "setOperatorRestriction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"OperatorNotAllowed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"restriction\",\"type\":\"bool\"}],\"name\":\"OperatorRestriction\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"operatorRestriction\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"_restriction\",\"type\":\"bool\"}],\"name\":\"setOperatorRestriction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/DefaultOperatorFiltererUpgradeable.sol\":\"DefaultOperatorFiltererUpgradeable\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/DefaultOperatorFiltererUpgradeable.sol\":{\"keccak256\":\"0x62d82883047991b642ca56b5f01ac39b6b5ea64e26b23ad1efaecc02e1d88701\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://693cd425f20f33302dc9fce35defde61b04435d54b911fa0024992792093f3d8\",\"dweb:/ipfs/QmejQhQnRbb2XQjuh2x4PREXgT43hJtqkCfdka9GtHHxeQ\"]},\"project:/contracts/extension/OperatorFilterToggle.sol\":{\"keccak256\":\"0x7f4a59c3d0cd32b1b22a87eeaf74f395e8c56b2729e2418960c4c6dbfaf70329\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://193acd7afa57a8410ff53978c316114df95268a22601862acab8f60f695b52ac\",\"dweb:/ipfs/QmQx3Ary3ZEo9EKZ53W81rVP9dUGX4vxsB6UbFUNk3vfzA\"]},\"project:/contracts/extension/OperatorFiltererUpgradeable.sol\":{\"keccak256\":\"0x9c345e34d5305983ec8b146c8551d1321b1f49d92b4747bd2348e03056ccd80c\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://ecc791d8f341a86aeeb893e0d23fa5494e71d66a29df8bda69918988813c04e8\",\"dweb:/ipfs/QmQRoZkh4Lf8y5HgXiopBZJvppnBmsxF9MxEf79MCN3Q5M\"]},\"project:/contracts/extension/interface/IOperatorFilterRegistry.sol\":{\"keccak256\":\"0xd43ac6f703d7692f51537838fcee1a17a6d1414a5965c41351f147b211d0d2da\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://cbfa4ac6486f17865b1f28cdbc93d89a268988aecd75435f15cf2c74d6f04e34\",\"dweb:/ipfs/QmQcBAWV5d3cD4z7euEasc6WYYTpkS1eHHEF1bVk6nbhSg\"]},\"project:/contracts/extension/interface/IOperatorFilterToggle.sol\":{\"keccak256\":\"0xff05e83218d75f27210f20357d27849a2963b82830ca673a25c787f14b4203b1\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://36434c142d2e2f74a826f1240f8c12432eba0924fa7c888514592c46d4071674\",\"dweb:/ipfs/QmYntnzMvf6Duc9yhFyP4eheicbfUvBGcaXde9xqCrXPan\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache 2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\nimport { OperatorFiltererUpgradeable } from \"./OperatorFiltererUpgradeable.sol\";\n\nabstract contract DefaultOperatorFiltererUpgradeable is OperatorFiltererUpgradeable {\n    address constant DEFAULT_SUBSCRIPTION = address(0x3cc6CddA760b79bAfa08dF41ECFA224f810dCeB6);\n\n    function __DefaultOperatorFilterer_init() internal {\n        OperatorFiltererUpgradeable.__OperatorFilterer_init(DEFAULT_SUBSCRIPTION, true);\n    }\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/DefaultOperatorFiltererUpgradeable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/DefaultOperatorFiltererUpgradeable.sol",
+    "exportedSymbols": {
+      "DefaultOperatorFiltererUpgradeable": [
+        12239
+      ],
+      "OperatorFiltererUpgradeable": [
+        13331
+      ]
+    },
+    "id": 12240,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12217,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:21"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/OperatorFiltererUpgradeable.sol",
+        "file": "./OperatorFiltererUpgradeable.sol",
+        "id": 12219,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12240,
+        "sourceUnit": 13332,
+        "src": "86:80:21",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12218,
+              "name": "OperatorFiltererUpgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 13331,
+              "src": "95:27:21",
+              "typeDescriptions": {
+                "typeIdentifier": "t_type$_t_contract$_OperatorFiltererUpgradeable_$13331_$",
+                "typeString": "type(contract OperatorFiltererUpgradeable)"
+              }
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 12220,
+              "name": "OperatorFiltererUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 13331,
+              "src": "224:27:21"
+            },
+            "id": 12221,
+            "nodeType": "InheritanceSpecifier",
+            "src": "224:27:21"
+          }
+        ],
+        "canonicalName": "DefaultOperatorFiltererUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 12239,
+        "linearizedBaseContracts": [
+          12239,
+          13331,
+          13166,
+          14858
+        ],
+        "name": "DefaultOperatorFiltererUpgradeable",
+        "nameLocation": "186:34:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 12227,
+            "mutability": "constant",
+            "name": "DEFAULT_SUBSCRIPTION",
+            "nameLocation": "275:20:21",
+            "nodeType": "VariableDeclaration",
+            "scope": 12239,
+            "src": "258:91:21",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 12222,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "258:7:21",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "307833636336436464413736306237396241666130386446343145434641323234663831306443654236",
+                  "id": 12225,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "306:42:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "value": "0x3cc6CddA760b79bAfa08dF41ECFA224f810dCeB6"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                ],
+                "id": 12224,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "298:7:21",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": {
+                  "id": 12223,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "298:7:21",
+                  "typeDescriptions": {}
+                }
+              },
+              "id": 12226,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "298:51:21",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 12237,
+              "nodeType": "Block",
+              "src": "407:96:21",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 12233,
+                        "name": "DEFAULT_SUBSCRIPTION",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12227,
+                        "src": "469:20:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "hexValue": "74727565",
+                        "id": 12234,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "bool",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "491:4:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "value": "true"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "expression": {
+                        "id": 12230,
+                        "name": "OperatorFiltererUpgradeable",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13331,
+                        "src": "417:27:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_OperatorFiltererUpgradeable_$13331_$",
+                          "typeString": "type(contract OperatorFiltererUpgradeable)"
+                        }
+                      },
+                      "id": 12232,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "__OperatorFilterer_init",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 13252,
+                      "src": "417:51:21",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
+                        "typeString": "function (address,bool)"
+                      }
+                    },
+                    "id": 12235,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "417:79:21",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12236,
+                  "nodeType": "ExpressionStatement",
+                  "src": "417:79:21"
+                }
+              ]
+            },
+            "id": 12238,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "__DefaultOperatorFilterer_init",
+            "nameLocation": "365:30:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12228,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "395:2:21"
+            },
+            "returnParameters": {
+              "id": 12229,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "407:0:21"
+            },
+            "scope": 12239,
+            "src": "356:147:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 12240,
+        "src": "168:337:21",
+        "usedErrors": [
+          13176
+        ]
+      }
+    ],
+    "src": "39:467:21"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/DefaultOperatorFiltererUpgradeable.sol",
+    "exportedSymbols": {
+      "DefaultOperatorFiltererUpgradeable": [
+        12239
+      ],
+      "OperatorFiltererUpgradeable": [
+        13331
+      ]
+    },
+    "id": 12240,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12217,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:21"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/OperatorFiltererUpgradeable.sol",
+        "file": "./OperatorFiltererUpgradeable.sol",
+        "id": 12219,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12240,
+        "sourceUnit": 13332,
+        "src": "86:80:21",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12218,
+              "name": "OperatorFiltererUpgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 13331,
+              "src": "95:27:21",
+              "typeDescriptions": {
+                "typeIdentifier": "t_type$_t_contract$_OperatorFiltererUpgradeable_$13331_$",
+                "typeString": "type(contract OperatorFiltererUpgradeable)"
+              }
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 12220,
+              "name": "OperatorFiltererUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 13331,
+              "src": "224:27:21"
+            },
+            "id": 12221,
+            "nodeType": "InheritanceSpecifier",
+            "src": "224:27:21"
+          }
+        ],
+        "canonicalName": "DefaultOperatorFiltererUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 12239,
+        "linearizedBaseContracts": [
+          12239,
+          13331,
+          13166,
+          14858
+        ],
+        "name": "DefaultOperatorFiltererUpgradeable",
+        "nameLocation": "186:34:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 12227,
+            "mutability": "constant",
+            "name": "DEFAULT_SUBSCRIPTION",
+            "nameLocation": "275:20:21",
+            "nodeType": "VariableDeclaration",
+            "scope": 12239,
+            "src": "258:91:21",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 12222,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "258:7:21",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "307833636336436464413736306237396241666130386446343145434641323234663831306443654236",
+                  "id": 12225,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "306:42:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "value": "0x3cc6CddA760b79bAfa08dF41ECFA224f810dCeB6"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                ],
+                "id": 12224,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "298:7:21",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": {
+                  "id": 12223,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "298:7:21",
+                  "typeDescriptions": {}
+                }
+              },
+              "id": 12226,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "298:51:21",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 12237,
+              "nodeType": "Block",
+              "src": "407:96:21",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 12233,
+                        "name": "DEFAULT_SUBSCRIPTION",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12227,
+                        "src": "469:20:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "hexValue": "74727565",
+                        "id": 12234,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "bool",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "491:4:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "value": "true"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "expression": {
+                        "id": 12230,
+                        "name": "OperatorFiltererUpgradeable",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13331,
+                        "src": "417:27:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_OperatorFiltererUpgradeable_$13331_$",
+                          "typeString": "type(contract OperatorFiltererUpgradeable)"
+                        }
+                      },
+                      "id": 12232,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "__OperatorFilterer_init",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 13252,
+                      "src": "417:51:21",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
+                        "typeString": "function (address,bool)"
+                      }
+                    },
+                    "id": 12235,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "417:79:21",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12236,
+                  "nodeType": "ExpressionStatement",
+                  "src": "417:79:21"
+                }
+              ]
+            },
+            "id": 12238,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "__DefaultOperatorFilterer_init",
+            "nameLocation": "365:30:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12228,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "395:2:21"
+            },
+            "returnParameters": {
+              "id": 12229,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "407:0:21"
+            },
+            "scope": 12239,
+            "src": "356:147:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 12240,
+        "src": "168:337:21",
+        "usedErrors": [
+          13176
+        ]
+      }
+    ],
+    "src": "39:467:21"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.477Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -26,12 +26,35 @@ const config: HardhatUserConfig = {
       gas: 8000000,
       gasPrice: ethers.utils.parseUnits('200', 'gwei').toNumber(),
     },
+    mumbai: {
+      url: `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+      gas: 8000000,
+      gasPrice: ethers.utils.parseUnits('200', 'gwei').toNumber(),
+    },
+    mantle: {
+      url: `https://rpc.mantle.xyz`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+      chainId: 5000,
+    },
   },
   etherscan: {
     apiKey: {
       mainnet: "P78HUI9K9SAM5QKD6ABU91G3CPDS98MZW2",
       polygon: "5KZMXJXAZRC311U3YZ916DS7Y1US8Y4TT1",
-    }
+      mumbai: "5KZMXJXAZRC311U3YZ916DS7Y1US8Y4TT1",
+      mantle: "xyz"
+    },
+    customChains: [
+      {
+        network: "mantle",
+        chainId: 5000,
+        urls: {
+          apiURL: "https://explorer.mantle.xyz/api",
+          browserURL: "https://explorer.mantle.xyz/"
+        }
+      }
+    ]
   }
 };
 

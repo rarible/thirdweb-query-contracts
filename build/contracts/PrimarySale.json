@@ -1,0 +1,1456 @@
+{
+  "contractName": "PrimarySale",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "PrimarySaleRecipientUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "primarySaleRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_saleRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setPrimarySaleRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"PrimarySaleRecipientUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"primarySaleRecipient\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_saleRecipient\",\"type\":\"address\"}],\"name\":\"setPrimarySaleRecipient\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"primarySaleRecipient()\":{\"details\":\"Returns primary sale recipient address.\"},\"setPrimarySaleRecipient(address)\":{\"details\":\"Caller should be authorized to set primary sales info.                  See {_canSetPrimarySaleRecipient}.                  Emits {PrimarySaleRecipientUpdated Event}; See {_setupPrimarySaleRecipient}.\",\"params\":{\"_saleRecipient\":\"Address to be set as new recipient of primary sales.\"}}},\"stateVariables\":{\"recipient\":{\"details\":\"The address that receives all primary sales value.\"}},\"title\":\"Primary Sale\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"setPrimarySaleRecipient(address)\":{\"notice\":\"Updates primary sale recipient.\"}},\"notice\":\"Thirdweb's `PrimarySale` is a contract extension to be used with any base contract. It exposes functions for setting and reading           the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about           primary sales, if desired.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/PrimarySale.sol\":\"PrimarySale\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/PrimarySale.sol\":{\"keccak256\":\"0x9ef1ad82fadf988a07f4034b92ccdb3281682693e41759a79042814d36095f42\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://0d962b48453e1f50b808193135c2f14265324fa8b75fe3b405ef7836e38921f7\",\"dweb:/ipfs/QmZDLNsZQj9kNcb15nBuWRpPwDdDvJS2gtFwqEs2Lwxb1N\"]},\"project:/contracts/extension/interface/IPrimarySale.sol\":{\"keccak256\":\"0x77c89cb8d9b781b0a08b1fa81c95a0dd5c19200b2fb0dc884c1084b931624004\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://a37b042af11a08ba5518dadf72c91745d1b5f42b1c20ea5282492bfd18f53869\",\"dweb:/ipfs/QmWEYYG5VqR8MRfr2rydDV98GLKmaJtCC8G1W7MzJ9qFnF\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\nimport \"./interface/IPrimarySale.sol\";\n\n/**\n *  @title   Primary Sale\n *  @notice  Thirdweb's `PrimarySale` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n *           the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n *           primary sales, if desired.\n */\n\nabstract contract PrimarySale is IPrimarySale {\n    /// @dev The address that receives all primary sales value.\n    address private recipient;\n\n    /// @dev Returns primary sale recipient address.\n    function primarySaleRecipient() public view override returns (address) {\n        return recipient;\n    }\n\n    /**\n     *  @notice         Updates primary sale recipient.\n     *  @dev            Caller should be authorized to set primary sales info.\n     *                  See {_canSetPrimarySaleRecipient}.\n     *                  Emits {PrimarySaleRecipientUpdated Event}; See {_setupPrimarySaleRecipient}.\n     *\n     *  @param _saleRecipient   Address to be set as new recipient of primary sales.\n     */\n    function setPrimarySaleRecipient(address _saleRecipient) external override {\n        if (!_canSetPrimarySaleRecipient()) {\n            revert(\"Not authorized\");\n        }\n        _setupPrimarySaleRecipient(_saleRecipient);\n    }\n\n    /// @dev Lets a contract admin set the recipient for all primary sales.\n    function _setupPrimarySaleRecipient(address _saleRecipient) internal {\n        recipient = _saleRecipient;\n        emit PrimarySaleRecipientUpdated(_saleRecipient);\n    }\n\n    /// @dev Returns whether primary sale recipient can be set in the given execution context.\n    function _canSetPrimarySaleRecipient() internal view virtual returns (bool);\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/PrimarySale.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/PrimarySale.sol",
+    "exportedSymbols": {
+      "IPrimarySale": [
+        15027
+      ],
+      "PrimarySale": [
+        14215
+      ]
+    },
+    "id": 14216,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14155,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:31"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/IPrimarySale.sol",
+        "file": "./interface/IPrimarySale.sol",
+        "id": 14156,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 14216,
+        "sourceUnit": 15028,
+        "src": "86:38:31",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 14158,
+              "name": "IPrimarySale",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 15027,
+              "src": "508:12:31"
+            },
+            "id": 14159,
+            "nodeType": "InheritanceSpecifier",
+            "src": "508:12:31"
+          }
+        ],
+        "canonicalName": "PrimarySale",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 14157,
+          "nodeType": "StructuredDocumentation",
+          "src": "126:347:31",
+          "text": "  @title   Primary Sale\n  @notice  Thirdweb's `PrimarySale` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n           the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n           primary sales, if desired."
+        },
+        "fullyImplemented": false,
+        "id": 14215,
+        "linearizedBaseContracts": [
+          14215,
+          15027
+        ],
+        "name": "PrimarySale",
+        "nameLocation": "493:11:31",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 14160,
+              "nodeType": "StructuredDocumentation",
+              "src": "527:59:31",
+              "text": "@dev The address that receives all primary sales value."
+            },
+            "id": 14162,
+            "mutability": "mutable",
+            "name": "recipient",
+            "nameLocation": "607:9:31",
+            "nodeType": "VariableDeclaration",
+            "scope": 14215,
+            "src": "591:25:31",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 14161,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "591:7:31",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "baseFunctions": [
+              15015
+            ],
+            "body": {
+              "id": 14171,
+              "nodeType": "Block",
+              "src": "747:33:31",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 14169,
+                    "name": "recipient",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 14162,
+                    "src": "764:9:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 14168,
+                  "id": 14170,
+                  "nodeType": "Return",
+                  "src": "757:16:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14163,
+              "nodeType": "StructuredDocumentation",
+              "src": "623:48:31",
+              "text": "@dev Returns primary sale recipient address."
+            },
+            "functionSelector": "079fe40e",
+            "id": 14172,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "primarySaleRecipient",
+            "nameLocation": "685:20:31",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 14165,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "720:8:31"
+            },
+            "parameters": {
+              "id": 14164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "705:2:31"
+            },
+            "returnParameters": {
+              "id": 14168,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14167,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14172,
+                  "src": "738:7:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14166,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "738:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "737:9:31"
+            },
+            "scope": 14215,
+            "src": "676:104:31",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              15021
+            ],
+            "body": {
+              "id": 14192,
+              "nodeType": "Block",
+              "src": "1264:153:31",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 14181,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1278:30:31",
+                    "subExpression": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 14179,
+                        "name": "_canSetPrimarySaleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14214,
+                        "src": "1279:27:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                          "typeString": "function () view returns (bool)"
+                        }
+                      },
+                      "id": 14180,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1279:29:31",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 14187,
+                  "nodeType": "IfStatement",
+                  "src": "1274:85:31",
+                  "trueBody": {
+                    "id": 14186,
+                    "nodeType": "Block",
+                    "src": "1310:49:31",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "4e6f7420617574686f72697a6564",
+                              "id": 14183,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1331:16:31",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              },
+                              "value": "Not authorized"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              }
+                            ],
+                            "id": 14182,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1324:6:31",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 14184,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1324:24:31",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 14185,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1324:24:31"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 14189,
+                        "name": "_saleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14175,
+                        "src": "1395:14:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 14188,
+                      "name": "_setupPrimarySaleRecipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14208,
+                      "src": "1368:26:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 14190,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1368:42:31",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 14191,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1368:42:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14173,
+              "nodeType": "StructuredDocumentation",
+              "src": "786:398:31",
+              "text": "  @notice         Updates primary sale recipient.\n  @dev            Caller should be authorized to set primary sales info.\n                  See {_canSetPrimarySaleRecipient}.\n                  Emits {PrimarySaleRecipientUpdated Event}; See {_setupPrimarySaleRecipient}.\n  @param _saleRecipient   Address to be set as new recipient of primary sales."
+            },
+            "functionSelector": "6f4f2837",
+            "id": 14193,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPrimarySaleRecipient",
+            "nameLocation": "1198:23:31",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 14177,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1255:8:31"
+            },
+            "parameters": {
+              "id": 14176,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14175,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "1230:14:31",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14193,
+                  "src": "1222:22:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14174,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1222:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1221:24:31"
+            },
+            "returnParameters": {
+              "id": 14178,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1264:0:31"
+            },
+            "scope": 14215,
+            "src": "1189:228:31",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 14207,
+              "nodeType": "Block",
+              "src": "1568:101:31",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 14201,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 14199,
+                      "name": "recipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14162,
+                      "src": "1578:9:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 14200,
+                      "name": "_saleRecipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14196,
+                      "src": "1590:14:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1578:26:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 14202,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1578:26:31"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 14204,
+                        "name": "_saleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14196,
+                        "src": "1647:14:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 14203,
+                      "name": "PrimarySaleRecipientUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15026,
+                      "src": "1619:27:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 14205,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1619:43:31",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 14206,
+                  "nodeType": "EmitStatement",
+                  "src": "1614:48:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14194,
+              "nodeType": "StructuredDocumentation",
+              "src": "1423:71:31",
+              "text": "@dev Lets a contract admin set the recipient for all primary sales."
+            },
+            "id": 14208,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_setupPrimarySaleRecipient",
+            "nameLocation": "1508:26:31",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14197,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14196,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "1543:14:31",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14208,
+                  "src": "1535:22:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14195,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1535:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1534:24:31"
+            },
+            "returnParameters": {
+              "id": 14198,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1568:0:31"
+            },
+            "scope": 14215,
+            "src": "1499:170:31",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "documentation": {
+              "id": 14209,
+              "nodeType": "StructuredDocumentation",
+              "src": "1675:90:31",
+              "text": "@dev Returns whether primary sale recipient can be set in the given execution context."
+            },
+            "id": 14214,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canSetPrimarySaleRecipient",
+            "nameLocation": "1779:27:31",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14210,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1806:2:31"
+            },
+            "returnParameters": {
+              "id": 14213,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14212,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14214,
+                  "src": "1840:4:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14211,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1840:4:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1839:6:31"
+            },
+            "scope": 14215,
+            "src": "1770:76:31",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 14216,
+        "src": "475:1373:31",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1810:31"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/PrimarySale.sol",
+    "exportedSymbols": {
+      "IPrimarySale": [
+        15027
+      ],
+      "PrimarySale": [
+        14215
+      ]
+    },
+    "id": 14216,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14155,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:31"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/IPrimarySale.sol",
+        "file": "./interface/IPrimarySale.sol",
+        "id": 14156,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 14216,
+        "sourceUnit": 15028,
+        "src": "86:38:31",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 14158,
+              "name": "IPrimarySale",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 15027,
+              "src": "508:12:31"
+            },
+            "id": 14159,
+            "nodeType": "InheritanceSpecifier",
+            "src": "508:12:31"
+          }
+        ],
+        "canonicalName": "PrimarySale",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 14157,
+          "nodeType": "StructuredDocumentation",
+          "src": "126:347:31",
+          "text": "  @title   Primary Sale\n  @notice  Thirdweb's `PrimarySale` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n           the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n           primary sales, if desired."
+        },
+        "fullyImplemented": false,
+        "id": 14215,
+        "linearizedBaseContracts": [
+          14215,
+          15027
+        ],
+        "name": "PrimarySale",
+        "nameLocation": "493:11:31",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 14160,
+              "nodeType": "StructuredDocumentation",
+              "src": "527:59:31",
+              "text": "@dev The address that receives all primary sales value."
+            },
+            "id": 14162,
+            "mutability": "mutable",
+            "name": "recipient",
+            "nameLocation": "607:9:31",
+            "nodeType": "VariableDeclaration",
+            "scope": 14215,
+            "src": "591:25:31",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 14161,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "591:7:31",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "baseFunctions": [
+              15015
+            ],
+            "body": {
+              "id": 14171,
+              "nodeType": "Block",
+              "src": "747:33:31",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 14169,
+                    "name": "recipient",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 14162,
+                    "src": "764:9:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 14168,
+                  "id": 14170,
+                  "nodeType": "Return",
+                  "src": "757:16:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14163,
+              "nodeType": "StructuredDocumentation",
+              "src": "623:48:31",
+              "text": "@dev Returns primary sale recipient address."
+            },
+            "functionSelector": "079fe40e",
+            "id": 14172,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "primarySaleRecipient",
+            "nameLocation": "685:20:31",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 14165,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "720:8:31"
+            },
+            "parameters": {
+              "id": 14164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "705:2:31"
+            },
+            "returnParameters": {
+              "id": 14168,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14167,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14172,
+                  "src": "738:7:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14166,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "738:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "737:9:31"
+            },
+            "scope": 14215,
+            "src": "676:104:31",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              15021
+            ],
+            "body": {
+              "id": 14192,
+              "nodeType": "Block",
+              "src": "1264:153:31",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 14181,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1278:30:31",
+                    "subExpression": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 14179,
+                        "name": "_canSetPrimarySaleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14214,
+                        "src": "1279:27:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                          "typeString": "function () view returns (bool)"
+                        }
+                      },
+                      "id": 14180,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1279:29:31",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 14187,
+                  "nodeType": "IfStatement",
+                  "src": "1274:85:31",
+                  "trueBody": {
+                    "id": 14186,
+                    "nodeType": "Block",
+                    "src": "1310:49:31",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "4e6f7420617574686f72697a6564",
+                              "id": 14183,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1331:16:31",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              },
+                              "value": "Not authorized"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              }
+                            ],
+                            "id": 14182,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1324:6:31",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 14184,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1324:24:31",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 14185,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1324:24:31"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 14189,
+                        "name": "_saleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14175,
+                        "src": "1395:14:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 14188,
+                      "name": "_setupPrimarySaleRecipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14208,
+                      "src": "1368:26:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 14190,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1368:42:31",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 14191,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1368:42:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14173,
+              "nodeType": "StructuredDocumentation",
+              "src": "786:398:31",
+              "text": "  @notice         Updates primary sale recipient.\n  @dev            Caller should be authorized to set primary sales info.\n                  See {_canSetPrimarySaleRecipient}.\n                  Emits {PrimarySaleRecipientUpdated Event}; See {_setupPrimarySaleRecipient}.\n  @param _saleRecipient   Address to be set as new recipient of primary sales."
+            },
+            "functionSelector": "6f4f2837",
+            "id": 14193,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPrimarySaleRecipient",
+            "nameLocation": "1198:23:31",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 14177,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1255:8:31"
+            },
+            "parameters": {
+              "id": 14176,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14175,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "1230:14:31",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14193,
+                  "src": "1222:22:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14174,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1222:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1221:24:31"
+            },
+            "returnParameters": {
+              "id": 14178,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1264:0:31"
+            },
+            "scope": 14215,
+            "src": "1189:228:31",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 14207,
+              "nodeType": "Block",
+              "src": "1568:101:31",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 14201,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 14199,
+                      "name": "recipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14162,
+                      "src": "1578:9:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 14200,
+                      "name": "_saleRecipient",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14196,
+                      "src": "1590:14:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1578:26:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 14202,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1578:26:31"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 14204,
+                        "name": "_saleRecipient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14196,
+                        "src": "1647:14:31",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 14203,
+                      "name": "PrimarySaleRecipientUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15026,
+                      "src": "1619:27:31",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 14205,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1619:43:31",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 14206,
+                  "nodeType": "EmitStatement",
+                  "src": "1614:48:31"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14194,
+              "nodeType": "StructuredDocumentation",
+              "src": "1423:71:31",
+              "text": "@dev Lets a contract admin set the recipient for all primary sales."
+            },
+            "id": 14208,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_setupPrimarySaleRecipient",
+            "nameLocation": "1508:26:31",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14197,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14196,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "1543:14:31",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14208,
+                  "src": "1535:22:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14195,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1535:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1534:24:31"
+            },
+            "returnParameters": {
+              "id": 14198,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1568:0:31"
+            },
+            "scope": 14215,
+            "src": "1499:170:31",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "documentation": {
+              "id": 14209,
+              "nodeType": "StructuredDocumentation",
+              "src": "1675:90:31",
+              "text": "@dev Returns whether primary sale recipient can be set in the given execution context."
+            },
+            "id": 14214,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canSetPrimarySaleRecipient",
+            "nameLocation": "1779:27:31",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14210,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1806:2:31"
+            },
+            "returnParameters": {
+              "id": 14213,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14212,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14214,
+                  "src": "1840:4:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14211,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1840:4:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1839:6:31"
+            },
+            "scope": 14215,
+            "src": "1770:76:31",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 14216,
+        "src": "475:1373:31",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1810:31"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.494Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "primarySaleRecipient()": {
+        "details": "Returns primary sale recipient address."
+      },
+      "setPrimarySaleRecipient(address)": {
+        "details": "Caller should be authorized to set primary sales info.                  See {_canSetPrimarySaleRecipient}.                  Emits {PrimarySaleRecipientUpdated Event}; See {_setupPrimarySaleRecipient}.",
+        "params": {
+          "_saleRecipient": "Address to be set as new recipient of primary sales."
+        }
+      }
+    },
+    "stateVariables": {
+      "recipient": {
+        "details": "The address that receives all primary sales value."
+      }
+    },
+    "title": "Primary Sale",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "setPrimarySaleRecipient(address)": {
+        "notice": "Updates primary sale recipient."
+      }
+    },
+    "notice": "Thirdweb's `PrimarySale` is a contract extension to be used with any base contract. It exposes functions for setting and reading           the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about           primary sales, if desired.",
+    "version": 1
+  }
+}

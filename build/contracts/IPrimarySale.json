@@ -1,0 +1,534 @@
+{
+  "contractName": "IPrimarySale",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "PrimarySaleRecipientUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "primarySaleRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_saleRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setPrimarySaleRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"PrimarySaleRecipientUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"primarySaleRecipient\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_saleRecipient\",\"type\":\"address\"}],\"name\":\"setPrimarySaleRecipient\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"PrimarySaleRecipientUpdated(address)\":{\"details\":\"Emitted when a new sale recipient is set.\"}},\"kind\":\"dev\",\"methods\":{\"primarySaleRecipient()\":{\"details\":\"The adress that receives all primary sales value.\"},\"setPrimarySaleRecipient(address)\":{\"details\":\"Lets a module admin set the default recipient of all primary sales.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Thirdweb's `Primary` is a contract extension to be used with any base contract. It exposes functions for setting and reading  the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about  primary sales, if desired.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/interface/IPrimarySale.sol\":\"IPrimarySale\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/interface/IPrimarySale.sol\":{\"keccak256\":\"0x77c89cb8d9b781b0a08b1fa81c95a0dd5c19200b2fb0dc884c1084b931624004\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://a37b042af11a08ba5518dadf72c91745d1b5f42b1c20ea5282492bfd18f53869\",\"dweb:/ipfs/QmWEYYG5VqR8MRfr2rydDV98GLKmaJtCC8G1W7MzJ9qFnF\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\n/**\n *  Thirdweb's `Primary` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n *  the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n *  primary sales, if desired.\n */\n\ninterface IPrimarySale {\n    /// @dev The adress that receives all primary sales value.\n    function primarySaleRecipient() external view returns (address);\n\n    /// @dev Lets a module admin set the default recipient of all primary sales.\n    function setPrimarySaleRecipient(address _saleRecipient) external;\n\n    /// @dev Emitted when a new sale recipient is set.\n    event PrimarySaleRecipientUpdated(address indexed recipient);\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/interface/IPrimarySale.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/interface/IPrimarySale.sol",
+    "exportedSymbols": {
+      "IPrimarySale": [
+        15027
+      ]
+    },
+    "id": 15028,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15008,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:45"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPrimarySale",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 15009,
+          "nodeType": "StructuredDocumentation",
+          "src": "86:290:45",
+          "text": "  Thirdweb's `Primary` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n  the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n  primary sales, if desired."
+        },
+        "fullyImplemented": false,
+        "id": 15027,
+        "linearizedBaseContracts": [
+          15027
+        ],
+        "name": "IPrimarySale",
+        "nameLocation": "388:12:45",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 15010,
+              "nodeType": "StructuredDocumentation",
+              "src": "407:58:45",
+              "text": "@dev The adress that receives all primary sales value."
+            },
+            "functionSelector": "079fe40e",
+            "id": 15015,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "primarySaleRecipient",
+            "nameLocation": "479:20:45",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15011,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "499:2:45"
+            },
+            "returnParameters": {
+              "id": 15014,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15013,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15015,
+                  "src": "525:7:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15012,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "525:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "524:9:45"
+            },
+            "scope": 15027,
+            "src": "470:64:45",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15016,
+              "nodeType": "StructuredDocumentation",
+              "src": "540:76:45",
+              "text": "@dev Lets a module admin set the default recipient of all primary sales."
+            },
+            "functionSelector": "6f4f2837",
+            "id": 15021,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPrimarySaleRecipient",
+            "nameLocation": "630:23:45",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15019,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15018,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "662:14:45",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15021,
+                  "src": "654:22:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15017,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "654:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "653:24:45"
+            },
+            "returnParameters": {
+              "id": 15020,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "686:0:45"
+            },
+            "scope": 15027,
+            "src": "621:66:45",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15022,
+              "nodeType": "StructuredDocumentation",
+              "src": "693:50:45",
+              "text": "@dev Emitted when a new sale recipient is set."
+            },
+            "id": 15026,
+            "name": "PrimarySaleRecipientUpdated",
+            "nameLocation": "754:27:45",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15025,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15024,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "798:9:45",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15026,
+                  "src": "782:25:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15023,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "782:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "781:27:45"
+            },
+            "src": "748:61:45"
+          }
+        ],
+        "scope": 15028,
+        "src": "378:433:45",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:773:45"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/interface/IPrimarySale.sol",
+    "exportedSymbols": {
+      "IPrimarySale": [
+        15027
+      ]
+    },
+    "id": 15028,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15008,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:45"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPrimarySale",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 15009,
+          "nodeType": "StructuredDocumentation",
+          "src": "86:290:45",
+          "text": "  Thirdweb's `Primary` is a contract extension to be used with any base contract. It exposes functions for setting and reading\n  the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about\n  primary sales, if desired."
+        },
+        "fullyImplemented": false,
+        "id": 15027,
+        "linearizedBaseContracts": [
+          15027
+        ],
+        "name": "IPrimarySale",
+        "nameLocation": "388:12:45",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 15010,
+              "nodeType": "StructuredDocumentation",
+              "src": "407:58:45",
+              "text": "@dev The adress that receives all primary sales value."
+            },
+            "functionSelector": "079fe40e",
+            "id": 15015,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "primarySaleRecipient",
+            "nameLocation": "479:20:45",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15011,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "499:2:45"
+            },
+            "returnParameters": {
+              "id": 15014,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15013,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15015,
+                  "src": "525:7:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15012,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "525:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "524:9:45"
+            },
+            "scope": 15027,
+            "src": "470:64:45",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15016,
+              "nodeType": "StructuredDocumentation",
+              "src": "540:76:45",
+              "text": "@dev Lets a module admin set the default recipient of all primary sales."
+            },
+            "functionSelector": "6f4f2837",
+            "id": 15021,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setPrimarySaleRecipient",
+            "nameLocation": "630:23:45",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15019,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15018,
+                  "mutability": "mutable",
+                  "name": "_saleRecipient",
+                  "nameLocation": "662:14:45",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15021,
+                  "src": "654:22:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15017,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "654:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "653:24:45"
+            },
+            "returnParameters": {
+              "id": 15020,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "686:0:45"
+            },
+            "scope": 15027,
+            "src": "621:66:45",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15022,
+              "nodeType": "StructuredDocumentation",
+              "src": "693:50:45",
+              "text": "@dev Emitted when a new sale recipient is set."
+            },
+            "id": 15026,
+            "name": "PrimarySaleRecipientUpdated",
+            "nameLocation": "754:27:45",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15025,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15024,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "798:9:45",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15026,
+                  "src": "782:25:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15023,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "782:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "781:27:45"
+            },
+            "src": "748:61:45"
+          }
+        ],
+        "scope": 15028,
+        "src": "378:433:45",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:773:45"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.501Z",
+  "devdoc": {
+    "events": {
+      "PrimarySaleRecipientUpdated(address)": {
+        "details": "Emitted when a new sale recipient is set."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "primarySaleRecipient()": {
+        "details": "The adress that receives all primary sales value."
+      },
+      "setPrimarySaleRecipient(address)": {
+        "details": "Lets a module admin set the default recipient of all primary sales."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Thirdweb's `Primary` is a contract extension to be used with any base contract. It exposes functions for setting and reading  the recipient of primary sales, and lets the inheriting contract perform conditional logic that uses information about  primary sales, if desired.",
+    "version": 1
+  }
+}

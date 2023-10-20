@@ -25,68 +25,75 @@ export async function getClaimIneligibilityReasons(
     quantity: number,
     storage: ThirdwebStorage,
     sdk: ThirdwebSDK,
-    addressToCheck?: string
+    addressToCheck?: string,
 ): Promise<ClaimEligibility | null> {
     let activeConditionIndex: BigNumber;
 
-    // if we have been unable to get a signer address, we can't check eligibility, so return a NoWallet error reason
+    // If we have been unable to get a signer address, we can't check eligibility, so return a NoWallet error reason
     if (!addressToCheck) {
         return ClaimEligibility.NoWallet;
     }
 
     try {
-        const illegebilityData = await erc721Reader.getAllData(erc721.address, addressToCheck)
-        if (illegebilityData.conditions.length == 0) {
+        // Fetch eligibility data for the given address
+        const eligibilityData = await erc721Reader.getAllData(erc721.address, addressToCheck);
+
+        // If no claim conditions are set, return NoClaimConditionSet
+        if (eligibilityData.conditions.length === 0) {
             return ClaimEligibility.NoClaimConditionSet;
         }
-        activeConditionIndex = illegebilityData.activeClaimConditionIndex
-        const claimCondition = illegebilityData.conditions[activeConditionIndex.toNumber()] as IClaimCondition.ClaimConditionStructOutput
 
-        if (claimCondition.startTimestamp.gt(illegebilityData.globalData.blockTimeStamp)) {
+        activeConditionIndex = eligibilityData.activeClaimConditionIndex;
+        const claimCondition = eligibilityData.conditions[activeConditionIndex.toNumber()] as IClaimCondition.ClaimConditionStructOutput;
+
+        // Check if the claim phase has not started yet
+        if (claimCondition.startTimestamp.gt(eligibilityData.globalData.blockTimeStamp)) {
             return ClaimEligibility.ClaimPhaseNotStarted;
         }
 
-        if ((claimCondition.maxClaimableSupply.sub(claimCondition.supplyClaimed)).lt(quantity)) {
+        // Check if there is not enough supply remaining
+        if (claimCondition.maxClaimableSupply.sub(claimCondition.supplyClaimed).lt(quantity)) {
             return ClaimEligibility.NotEnoughSupply;
         }
 
-        if (illegebilityData.globalData.totalMinted.add(quantity).gt(illegebilityData.globalData.nextTokenIdToMint)) {
+        // Check if minting more tokens would exceed the total supply
+        if (eligibilityData.globalData.totalMinted.add(quantity).gt(eligibilityData.globalData.nextTokenIdToMint)) {
             return ClaimEligibility.NotEnoughSupply;
         }
 
-        // check for merkle root inclusion
+        // Check for merkle root inclusion
         const merkleRootArray = utils.stripZeros(claimCondition.merkleRoot);
         const hasAllowList = merkleRootArray.length > 0;
         let allowListEntry: SnapshotEntryWithProof | null = null;
+
         if (hasAllowList) {
+            // Fetch claimer proofs for the address
             allowListEntry = await getClaimerProofs(
                 addressToCheck,
                 claimCondition,
                 merkleRootArray,
-                illegebilityData.globalData.contractURI,
+                eligibilityData.globalData.contractURI,
                 storage,
-                sdk);
+                sdk,
+            );
 
             if (!allowListEntry) {
                 return ClaimEligibility.AddressNotAllowed;
             }
 
-            if (
-                claimCondition.quantityLimitPerWallet.gt(0) &&
-                BigNumber.from(allowListEntry.maxClaimable).lt(illegebilityData.globalData.claimedByUser.add(quantity))
-            ) {
+            // Check if the quantity claimed exceeds the maximum allowed per wallet
+            if (claimCondition.quantityLimitPerWallet.gt(0) &&
+                BigNumber.from(allowListEntry.maxClaimable).lt(eligibilityData.globalData.claimedByUser.add(quantity))) {
                 return ClaimEligibility.OverMaxClaimablePerWallet;
             }
 
             if (allowListEntry) {
                 try {
-                    const claimVerification = prepareClaim(
-                        addressToCheck,
-                        quantity,
-                        claimCondition,
-                        allowListEntry)
+                    // Verify the claim
+                    const claimVerification = prepareClaim(addressToCheck, quantity, claimCondition, allowListEntry);
 
-                    await erc721.verifyClaim(activeConditionIndex,
+                    await erc721.verifyClaim(
+                        activeConditionIndex,
                         addressToCheck,
                         quantity,
                         claimCondition.currency,
@@ -95,14 +102,13 @@ export async function getClaimIneligibilityReasons(
                             proof: claimVerification.proofs,
                             quantityLimitPerWallet: claimVerification.maxClaimable,
                             currency: claimVerification.currencyAddressInProof,
-                            pricePerToken: claimVerification.priceInProof
-                        })
-                } catch (e: any) {
-                    console.warn(
-                        "Merkle proof verification failed:",
-                        "reason" in e ? e.reason : e,
+                            pricePerToken: claimVerification.priceInProof,
+                        },
                     );
+                } catch (e: any) {
+                    console.warn("Merkle proof verification failed:", "reason" in e ? e.reason : e);
                     const reason = (e as any).reason;
+
                     switch (reason) {
                         case "!Qty":
                             return ClaimEligibility.OverMaxClaimablePerWallet;
@@ -118,29 +124,27 @@ export async function getClaimIneligibilityReasons(
                     }
                 }
             }
-
-            // public phase without allow list
         } else {
-            // check quantity
+            // Public phase without an allow list
+
+            // Check if the quantity claimed exceeds the maximum allowed per wallet
             if (claimCondition.quantityLimitPerWallet.lt(quantity)) {
                 return ClaimEligibility.OverMaxClaimablePerWallet;
             }
-            // check value
+
+            // Check if the claim has a price per token and the user has enough tokens
             if (claimCondition.pricePerToken.gt(0)) {
                 const totalPrice = claimCondition.pricePerToken.mul(quantity);
-                if (illegebilityData.globalData.userBalance.lt(totalPrice)) {
+                if (eligibilityData.globalData.userBalance.lt(totalPrice)) {
                     return ClaimEligibility.NotEnoughTokens;
                 }
             }
         }
     } catch (err: any) {
-        if (
-            includesErrorMessage(err, "!CONDITION") ||
-            includesErrorMessage(err, "no active mint condition")
-        ) {
+        if (includesErrorMessage(err, "!CONDITION") || includesErrorMessage(err, "no active mint condition")) {
             return ClaimEligibility.NoClaimConditionSet;
         }
-        console.warn("failed to get active claim condition", err);
+        console.warn("Failed to get active claim condition", err);
         return ClaimEligibility.Unknown;
     }
 

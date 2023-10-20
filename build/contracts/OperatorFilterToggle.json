@@ -1,0 +1,1127 @@
+{
+  "contractName": "OperatorFilterToggle",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "OperatorRestriction",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "operatorRestriction",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "_restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "setOperatorRestriction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"restriction\",\"type\":\"bool\"}],\"name\":\"OperatorRestriction\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"operatorRestriction\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"_restriction\",\"type\":\"bool\"}],\"name\":\"setOperatorRestriction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/OperatorFilterToggle.sol\":\"OperatorFilterToggle\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/OperatorFilterToggle.sol\":{\"keccak256\":\"0x7f4a59c3d0cd32b1b22a87eeaf74f395e8c56b2729e2418960c4c6dbfaf70329\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://193acd7afa57a8410ff53978c316114df95268a22601862acab8f60f695b52ac\",\"dweb:/ipfs/QmQx3Ary3ZEo9EKZ53W81rVP9dUGX4vxsB6UbFUNk3vfzA\"]},\"project:/contracts/extension/interface/IOperatorFilterToggle.sol\":{\"keccak256\":\"0xff05e83218d75f27210f20357d27849a2963b82830ca673a25c787f14b4203b1\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://36434c142d2e2f74a826f1240f8c12432eba0924fa7c888514592c46d4071674\",\"dweb:/ipfs/QmYntnzMvf6Duc9yhFyP4eheicbfUvBGcaXde9xqCrXPan\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache 2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\nimport \"./interface/IOperatorFilterToggle.sol\";\n\nabstract contract OperatorFilterToggle is IOperatorFilterToggle {\n    bool public operatorRestriction;\n\n    function setOperatorRestriction(bool _restriction) external {\n        require(_canSetOperatorRestriction(), \"Not authorized to set operator restriction.\");\n        _setOperatorRestriction(_restriction);\n    }\n\n    function _setOperatorRestriction(bool _restriction) internal {\n        operatorRestriction = _restriction;\n        emit OperatorRestriction(_restriction);\n    }\n\n    function _canSetOperatorRestriction() internal virtual returns (bool);\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/OperatorFilterToggle.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/OperatorFilterToggle.sol",
+    "exportedSymbols": {
+      "IOperatorFilterToggle": [
+        14858
+      ],
+      "OperatorFilterToggle": [
+        13166
+      ]
+    },
+    "id": 13167,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13125,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:25"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/IOperatorFilterToggle.sol",
+        "file": "./interface/IOperatorFilterToggle.sol",
+        "id": 13126,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13167,
+        "sourceUnit": 14859,
+        "src": "86:47:25",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 13127,
+              "name": "IOperatorFilterToggle",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 14858,
+              "src": "177:21:25"
+            },
+            "id": 13128,
+            "nodeType": "InheritanceSpecifier",
+            "src": "177:21:25"
+          }
+        ],
+        "canonicalName": "OperatorFilterToggle",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 13166,
+        "linearizedBaseContracts": [
+          13166,
+          14858
+        ],
+        "name": "OperatorFilterToggle",
+        "nameLocation": "153:20:25",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "baseFunctions": [
+              14852
+            ],
+            "constant": false,
+            "functionSelector": "504c6e01",
+            "id": 13130,
+            "mutability": "mutable",
+            "name": "operatorRestriction",
+            "nameLocation": "217:19:25",
+            "nodeType": "VariableDeclaration",
+            "scope": 13166,
+            "src": "205:31:25",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 13129,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "205:4:25",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14857
+            ],
+            "body": {
+              "id": 13145,
+              "nodeType": "Block",
+              "src": "303:148:25",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 13136,
+                          "name": "_canSetOperatorRestriction",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13165,
+                          "src": "321:26:25",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_nonpayable$__$returns$_t_bool_$",
+                            "typeString": "function () returns (bool)"
+                          }
+                        },
+                        "id": 13137,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "321:28:25",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4e6f7420617574686f72697a656420746f20736574206f70657261746f72207265737472696374696f6e2e",
+                        "id": 13138,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "351:45:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a9ed17f82e0cd9b6c2476a1740918076d32182ed7475da7e11dbdc14ae140862",
+                          "typeString": "literal_string \"Not authorized to set operator restriction.\""
+                        },
+                        "value": "Not authorized to set operator restriction."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a9ed17f82e0cd9b6c2476a1740918076d32182ed7475da7e11dbdc14ae140862",
+                          "typeString": "literal_string \"Not authorized to set operator restriction.\""
+                        }
+                      ],
+                      "id": 13135,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "313:7:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 13139,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "313:84:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13140,
+                  "nodeType": "ExpressionStatement",
+                  "src": "313:84:25"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 13142,
+                        "name": "_restriction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13132,
+                        "src": "431:12:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 13141,
+                      "name": "_setOperatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13160,
+                      "src": "407:23:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 13143,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "407:37:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13144,
+                  "nodeType": "ExpressionStatement",
+                  "src": "407:37:25"
+                }
+              ]
+            },
+            "functionSelector": "32f0cd64",
+            "id": 13146,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setOperatorRestriction",
+            "nameLocation": "252:22:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13133,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13132,
+                  "mutability": "mutable",
+                  "name": "_restriction",
+                  "nameLocation": "280:12:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13146,
+                  "src": "275:17:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13131,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "274:19:25"
+            },
+            "returnParameters": {
+              "id": 13134,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "303:0:25"
+            },
+            "scope": 13166,
+            "src": "243:208:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 13159,
+              "nodeType": "Block",
+              "src": "518:99:25",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 13153,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 13151,
+                      "name": "operatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13130,
+                      "src": "528:19:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 13152,
+                      "name": "_restriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13148,
+                      "src": "550:12:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "528:34:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13154,
+                  "nodeType": "ExpressionStatement",
+                  "src": "528:34:25"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 13156,
+                        "name": "_restriction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13148,
+                        "src": "597:12:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 13155,
+                      "name": "OperatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14847,
+                      "src": "577:19:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 13157,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "577:33:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13158,
+                  "nodeType": "EmitStatement",
+                  "src": "572:38:25"
+                }
+              ]
+            },
+            "id": 13160,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_setOperatorRestriction",
+            "nameLocation": "466:23:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13148,
+                  "mutability": "mutable",
+                  "name": "_restriction",
+                  "nameLocation": "495:12:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13160,
+                  "src": "490:17:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13147,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "490:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "489:19:25"
+            },
+            "returnParameters": {
+              "id": 13150,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "518:0:25"
+            },
+            "scope": 13166,
+            "src": "457:160:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 13165,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canSetOperatorRestriction",
+            "nameLocation": "632:26:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13161,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "658:2:25"
+            },
+            "returnParameters": {
+              "id": 13164,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13163,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13165,
+                  "src": "687:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13162,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "687:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "686:6:25"
+            },
+            "scope": 13166,
+            "src": "623:70:25",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 13167,
+        "src": "135:560:25",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:657:25"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/OperatorFilterToggle.sol",
+    "exportedSymbols": {
+      "IOperatorFilterToggle": [
+        14858
+      ],
+      "OperatorFilterToggle": [
+        13166
+      ]
+    },
+    "id": 13167,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13125,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:25"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/IOperatorFilterToggle.sol",
+        "file": "./interface/IOperatorFilterToggle.sol",
+        "id": 13126,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13167,
+        "sourceUnit": 14859,
+        "src": "86:47:25",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 13127,
+              "name": "IOperatorFilterToggle",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 14858,
+              "src": "177:21:25"
+            },
+            "id": 13128,
+            "nodeType": "InheritanceSpecifier",
+            "src": "177:21:25"
+          }
+        ],
+        "canonicalName": "OperatorFilterToggle",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 13166,
+        "linearizedBaseContracts": [
+          13166,
+          14858
+        ],
+        "name": "OperatorFilterToggle",
+        "nameLocation": "153:20:25",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "baseFunctions": [
+              14852
+            ],
+            "constant": false,
+            "functionSelector": "504c6e01",
+            "id": 13130,
+            "mutability": "mutable",
+            "name": "operatorRestriction",
+            "nameLocation": "217:19:25",
+            "nodeType": "VariableDeclaration",
+            "scope": 13166,
+            "src": "205:31:25",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 13129,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "205:4:25",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14857
+            ],
+            "body": {
+              "id": 13145,
+              "nodeType": "Block",
+              "src": "303:148:25",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 13136,
+                          "name": "_canSetOperatorRestriction",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13165,
+                          "src": "321:26:25",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_nonpayable$__$returns$_t_bool_$",
+                            "typeString": "function () returns (bool)"
+                          }
+                        },
+                        "id": 13137,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "321:28:25",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4e6f7420617574686f72697a656420746f20736574206f70657261746f72207265737472696374696f6e2e",
+                        "id": 13138,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "351:45:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a9ed17f82e0cd9b6c2476a1740918076d32182ed7475da7e11dbdc14ae140862",
+                          "typeString": "literal_string \"Not authorized to set operator restriction.\""
+                        },
+                        "value": "Not authorized to set operator restriction."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a9ed17f82e0cd9b6c2476a1740918076d32182ed7475da7e11dbdc14ae140862",
+                          "typeString": "literal_string \"Not authorized to set operator restriction.\""
+                        }
+                      ],
+                      "id": 13135,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "313:7:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 13139,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "313:84:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13140,
+                  "nodeType": "ExpressionStatement",
+                  "src": "313:84:25"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 13142,
+                        "name": "_restriction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13132,
+                        "src": "431:12:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 13141,
+                      "name": "_setOperatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13160,
+                      "src": "407:23:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 13143,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "407:37:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13144,
+                  "nodeType": "ExpressionStatement",
+                  "src": "407:37:25"
+                }
+              ]
+            },
+            "functionSelector": "32f0cd64",
+            "id": 13146,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setOperatorRestriction",
+            "nameLocation": "252:22:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13133,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13132,
+                  "mutability": "mutable",
+                  "name": "_restriction",
+                  "nameLocation": "280:12:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13146,
+                  "src": "275:17:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13131,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "274:19:25"
+            },
+            "returnParameters": {
+              "id": 13134,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "303:0:25"
+            },
+            "scope": 13166,
+            "src": "243:208:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 13159,
+              "nodeType": "Block",
+              "src": "518:99:25",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 13153,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 13151,
+                      "name": "operatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13130,
+                      "src": "528:19:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 13152,
+                      "name": "_restriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13148,
+                      "src": "550:12:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "528:34:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13154,
+                  "nodeType": "ExpressionStatement",
+                  "src": "528:34:25"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 13156,
+                        "name": "_restriction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13148,
+                        "src": "597:12:25",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 13155,
+                      "name": "OperatorRestriction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14847,
+                      "src": "577:19:25",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 13157,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "577:33:25",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13158,
+                  "nodeType": "EmitStatement",
+                  "src": "572:38:25"
+                }
+              ]
+            },
+            "id": 13160,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_setOperatorRestriction",
+            "nameLocation": "466:23:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13148,
+                  "mutability": "mutable",
+                  "name": "_restriction",
+                  "nameLocation": "495:12:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13160,
+                  "src": "490:17:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13147,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "490:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "489:19:25"
+            },
+            "returnParameters": {
+              "id": 13150,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "518:0:25"
+            },
+            "scope": 13166,
+            "src": "457:160:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 13165,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canSetOperatorRestriction",
+            "nameLocation": "632:26:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13161,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "658:2:25"
+            },
+            "returnParameters": {
+              "id": 13164,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13163,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13165,
+                  "src": "687:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13162,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "687:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "686:6:25"
+            },
+            "scope": 13166,
+            "src": "623:70:25",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 13167,
+        "src": "135:560:25",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:657:25"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.484Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,1847 @@
+{
+  "contractName": "IERC721AUpgradeable",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "ApprovalCallerNotOwnerNorApproved",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApprovalQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApprovalToCurrentOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApproveToCaller",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BalanceQueryForZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MintToZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MintZeroQuantity",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OwnerQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferCallerNotOwnerNorApproved",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFromIncorrectOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferToNonERC721ReceiverImplementer",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferToZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "URIQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "approved",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "ApprovalForAll",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getApproved",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ApprovalCallerNotOwnerNorApproved\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ApprovalQueryForNonexistentToken\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ApprovalToCurrentOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ApproveToCaller\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BalanceQueryForZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MintToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MintZeroQuantity\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnerQueryForNonexistentToken\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferCallerNotOwnerNorApproved\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferFromIncorrectOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferToNonERC721ReceiverImplementer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"URIQueryForNonexistentToken\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"approved\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface of an ERC721A compliant contract.\",\"kind\":\"dev\",\"methods\":{\"approve(address,uint256)\":{\"details\":\"Gives permission to `to` to transfer `tokenId` token to another account. The approval is cleared when the token is transferred. Only a single account can be approved at a time, so approving the zero address clears previous approvals. Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist. Emits an {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the number of tokens in ``owner``'s account.\"},\"getApproved(uint256)\":{\"details\":\"Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist.\"},\"isApprovedForAll(address,address)\":{\"details\":\"Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}\"},\"name()\":{\"details\":\"Returns the token collection name.\"},\"ownerOf(uint256)\":{\"details\":\"Returns the owner of the `tokenId` token. Requirements: - `tokenId` must exist.\"},\"safeTransferFrom(address,address,uint256)\":{\"details\":\"Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients are aware of the ERC721 protocol to prevent tokens from being forever locked. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must have been allowed to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event.\"},\"safeTransferFrom(address,address,uint256,bytes)\":{\"details\":\"Safely transfers `tokenId` token from `from` to `to`. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event.\"},\"setApprovalForAll(address,bool)\":{\"details\":\"Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event.\"},\"supportsInterface(bytes4)\":{\"details\":\"Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.\"},\"symbol()\":{\"details\":\"Returns the token collection symbol.\"},\"tokenURI(uint256)\":{\"details\":\"Returns the Uniform Resource Identifier (URI) for `tokenId` token.\"},\"totalSupply()\":{\"details\":\"Returns the total amount of tokens stored by the contract.  Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Transfers `tokenId` token from `from` to `to`. WARNING: Usage of this method is discouraged, use {safeTransferFrom} whenever possible. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"errors\":{\"ApprovalCallerNotOwnerNorApproved()\":[{\"notice\":\"The caller must own the token or be an approved operator.\"}],\"ApprovalQueryForNonexistentToken()\":[{\"notice\":\"The token does not exist.\"}],\"ApprovalToCurrentOwner()\":[{\"notice\":\"The caller cannot approve to the current owner.\"}],\"ApproveToCaller()\":[{\"notice\":\"The caller cannot approve to their own address.\"}],\"BalanceQueryForZeroAddress()\":[{\"notice\":\"Cannot query the balance for the zero address.\"}],\"MintToZeroAddress()\":[{\"notice\":\"Cannot mint to the zero address.\"}],\"MintZeroQuantity()\":[{\"notice\":\"The quantity of tokens minted must be more than zero.\"}],\"OwnerQueryForNonexistentToken()\":[{\"notice\":\"The token does not exist.\"}],\"TransferCallerNotOwnerNorApproved()\":[{\"notice\":\"The caller must own the token or be an approved operator.\"}],\"TransferFromIncorrectOwner()\":[{\"notice\":\"The token must be owned by `from`.\"}],\"TransferToNonERC721ReceiverImplementer()\":[{\"notice\":\"Cannot safely transfer to a contract that does not implement the ERC721Receiver interface.\"}],\"TransferToZeroAddress()\":[{\"notice\":\"Cannot transfer to the zero address.\"}],\"URIQueryForNonexistentToken()\":[{\"notice\":\"The token does not exist.\"}]},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"erc721a-upgradeable/contracts/IERC721AUpgradeable.sol\":\"IERC721AUpgradeable\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol\":{\"keccak256\":\"0x016298e66a5810253c6c905e61966bb31c8775c3f3517bf946ff56ee31d6c005\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1723de5ae414f210db039b19e6487c19c2d643483c9be7c445cf481a80c199d2\",\"dweb:/ipfs/QmcBLbmPdZsNngYhA1KDadNUqQZoGACytFWuUH74RC4AXC\"]},\"@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol\":{\"keccak256\":\"0x95a471796eb5f030fdc438660bebec121ad5d063763e64d92376ffb4b5ce8b70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4ffbd627e6958983d288801acdedbf3491ee0ebf1a430338bce47c96481ce9e3\",\"dweb:/ipfs/QmUM1vpmNgBV34sYf946SthDJNGhwwqjoRggmj4TUUQmdB\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758\",\"dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy\"]},\"erc721a-upgradeable/contracts/IERC721AUpgradeable.sol\":{\"keccak256\":\"0x89447bfc4f1417953e3664234d896b42ebc7d68b3cc27f86f7cdd7addfdd5c1c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3916917efc838814adb1e459c968d442d26e304f28af181ff35cffb5ca3ec0be\",\"dweb:/ipfs/QmcVwcrhenj31MCbDn6yvaYsFNkyJmA3isWaJiGhgQeEmQ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// ERC721A Contracts v3.3.0\n// Creator: Chiru Labs\n\npragma solidity ^0.8.4;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol\";\nimport \"@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol\";\n\n/**\n * @dev Interface of an ERC721A compliant contract.\n */\ninterface IERC721AUpgradeable is IERC721Upgradeable, IERC721MetadataUpgradeable {\n    /**\n     * The caller must own the token or be an approved operator.\n     */\n    error ApprovalCallerNotOwnerNorApproved();\n\n    /**\n     * The token does not exist.\n     */\n    error ApprovalQueryForNonexistentToken();\n\n    /**\n     * The caller cannot approve to their own address.\n     */\n    error ApproveToCaller();\n\n    /**\n     * The caller cannot approve to the current owner.\n     */\n    error ApprovalToCurrentOwner();\n\n    /**\n     * Cannot query the balance for the zero address.\n     */\n    error BalanceQueryForZeroAddress();\n\n    /**\n     * Cannot mint to the zero address.\n     */\n    error MintToZeroAddress();\n\n    /**\n     * The quantity of tokens minted must be more than zero.\n     */\n    error MintZeroQuantity();\n\n    /**\n     * The token does not exist.\n     */\n    error OwnerQueryForNonexistentToken();\n\n    /**\n     * The caller must own the token or be an approved operator.\n     */\n    error TransferCallerNotOwnerNorApproved();\n\n    /**\n     * The token must be owned by `from`.\n     */\n    error TransferFromIncorrectOwner();\n\n    /**\n     * Cannot safely transfer to a contract that does not implement the ERC721Receiver interface.\n     */\n    error TransferToNonERC721ReceiverImplementer();\n\n    /**\n     * Cannot transfer to the zero address.\n     */\n    error TransferToZeroAddress();\n\n    /**\n     * The token does not exist.\n     */\n    error URIQueryForNonexistentToken();\n\n    // Compiler will pack this into a single 256bit word.\n    struct TokenOwnership {\n        // The address of the owner.\n        address addr;\n        // Keeps track of the start time of ownership with minimal overhead for tokenomics.\n        uint64 startTimestamp;\n        // Whether the token has been burned.\n        bool burned;\n    }\n\n    // Compiler will pack this into a single 256bit word.\n    struct AddressData {\n        // Realistically, 2**64-1 is more than enough.\n        uint64 balance;\n        // Keeps track of mint count with minimal overhead for tokenomics.\n        uint64 numberMinted;\n        // Keeps track of burn count with minimal overhead for tokenomics.\n        uint64 numberBurned;\n        // For miscellaneous variable(s) pertaining to the address\n        // (e.g. number of whitelist mint slots used).\n        // If there are multiple variables, please pack them into a uint64.\n        uint64 aux;\n    }\n\n    /**\n     * @dev Returns the total amount of tokens stored by the contract.\n     * \n     * Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens.\n     */\n    function totalSupply() external view returns (uint256);\n}\n",
+  "sourcePath": "erc721a-upgradeable/contracts/IERC721AUpgradeable.sol",
+  "ast": {
+    "absolutePath": "erc721a-upgradeable/contracts/IERC721AUpgradeable.sol",
+    "exportedSymbols": {
+      "IERC165Upgradeable": [
+        1006
+      ],
+      "IERC721AUpgradeable": [
+        1077
+      ],
+      "IERC721MetadataUpgradeable": [
+        330
+      ],
+      "IERC721Upgradeable": [
+        303
+      ]
+    },
+    "id": 1078,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1008,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "84:23:11"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "id": 1009,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1078,
+        "sourceUnit": 304,
+        "src": "109:81:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol",
+        "id": 1010,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1078,
+        "sourceUnit": 331,
+        "src": "191:100:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 1012,
+              "name": "IERC721Upgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 303,
+              "src": "386:18:11"
+            },
+            "id": 1013,
+            "nodeType": "InheritanceSpecifier",
+            "src": "386:18:11"
+          },
+          {
+            "baseName": {
+              "id": 1014,
+              "name": "IERC721MetadataUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 330,
+              "src": "406:26:11"
+            },
+            "id": 1015,
+            "nodeType": "InheritanceSpecifier",
+            "src": "406:26:11"
+          }
+        ],
+        "canonicalName": "IERC721AUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1011,
+          "nodeType": "StructuredDocumentation",
+          "src": "293:59:11",
+          "text": " @dev Interface of an ERC721A compliant contract."
+        },
+        "fullyImplemented": false,
+        "id": 1077,
+        "linearizedBaseContracts": [
+          1077,
+          330,
+          303,
+          1006
+        ],
+        "name": "IERC721AUpgradeable",
+        "nameLocation": "363:19:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 1016,
+              "nodeType": "StructuredDocumentation",
+              "src": "439:76:11",
+              "text": " The caller must own the token or be an approved operator."
+            },
+            "id": 1018,
+            "name": "ApprovalCallerNotOwnerNorApproved",
+            "nameLocation": "526:33:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1017,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "559:2:11"
+            },
+            "src": "520:42:11"
+          },
+          {
+            "documentation": {
+              "id": 1019,
+              "nodeType": "StructuredDocumentation",
+              "src": "568:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1021,
+            "name": "ApprovalQueryForNonexistentToken",
+            "nameLocation": "623:32:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1020,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "655:2:11"
+            },
+            "src": "617:41:11"
+          },
+          {
+            "documentation": {
+              "id": 1022,
+              "nodeType": "StructuredDocumentation",
+              "src": "664:66:11",
+              "text": " The caller cannot approve to their own address."
+            },
+            "id": 1024,
+            "name": "ApproveToCaller",
+            "nameLocation": "741:15:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1023,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "756:2:11"
+            },
+            "src": "735:24:11"
+          },
+          {
+            "documentation": {
+              "id": 1025,
+              "nodeType": "StructuredDocumentation",
+              "src": "765:66:11",
+              "text": " The caller cannot approve to the current owner."
+            },
+            "id": 1027,
+            "name": "ApprovalToCurrentOwner",
+            "nameLocation": "842:22:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1026,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "864:2:11"
+            },
+            "src": "836:31:11"
+          },
+          {
+            "documentation": {
+              "id": 1028,
+              "nodeType": "StructuredDocumentation",
+              "src": "873:65:11",
+              "text": " Cannot query the balance for the zero address."
+            },
+            "id": 1030,
+            "name": "BalanceQueryForZeroAddress",
+            "nameLocation": "949:26:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1029,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "975:2:11"
+            },
+            "src": "943:35:11"
+          },
+          {
+            "documentation": {
+              "id": 1031,
+              "nodeType": "StructuredDocumentation",
+              "src": "984:51:11",
+              "text": " Cannot mint to the zero address."
+            },
+            "id": 1033,
+            "name": "MintToZeroAddress",
+            "nameLocation": "1046:17:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1032,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1063:2:11"
+            },
+            "src": "1040:26:11"
+          },
+          {
+            "documentation": {
+              "id": 1034,
+              "nodeType": "StructuredDocumentation",
+              "src": "1072:72:11",
+              "text": " The quantity of tokens minted must be more than zero."
+            },
+            "id": 1036,
+            "name": "MintZeroQuantity",
+            "nameLocation": "1155:16:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1035,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1171:2:11"
+            },
+            "src": "1149:25:11"
+          },
+          {
+            "documentation": {
+              "id": 1037,
+              "nodeType": "StructuredDocumentation",
+              "src": "1180:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1039,
+            "name": "OwnerQueryForNonexistentToken",
+            "nameLocation": "1235:29:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1038,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1264:2:11"
+            },
+            "src": "1229:38:11"
+          },
+          {
+            "documentation": {
+              "id": 1040,
+              "nodeType": "StructuredDocumentation",
+              "src": "1273:76:11",
+              "text": " The caller must own the token or be an approved operator."
+            },
+            "id": 1042,
+            "name": "TransferCallerNotOwnerNorApproved",
+            "nameLocation": "1360:33:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1041,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1393:2:11"
+            },
+            "src": "1354:42:11"
+          },
+          {
+            "documentation": {
+              "id": 1043,
+              "nodeType": "StructuredDocumentation",
+              "src": "1402:53:11",
+              "text": " The token must be owned by `from`."
+            },
+            "id": 1045,
+            "name": "TransferFromIncorrectOwner",
+            "nameLocation": "1466:26:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1044,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1492:2:11"
+            },
+            "src": "1460:35:11"
+          },
+          {
+            "documentation": {
+              "id": 1046,
+              "nodeType": "StructuredDocumentation",
+              "src": "1501:109:11",
+              "text": " Cannot safely transfer to a contract that does not implement the ERC721Receiver interface."
+            },
+            "id": 1048,
+            "name": "TransferToNonERC721ReceiverImplementer",
+            "nameLocation": "1621:38:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1047,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1659:2:11"
+            },
+            "src": "1615:47:11"
+          },
+          {
+            "documentation": {
+              "id": 1049,
+              "nodeType": "StructuredDocumentation",
+              "src": "1668:55:11",
+              "text": " Cannot transfer to the zero address."
+            },
+            "id": 1051,
+            "name": "TransferToZeroAddress",
+            "nameLocation": "1734:21:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1050,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1755:2:11"
+            },
+            "src": "1728:30:11"
+          },
+          {
+            "documentation": {
+              "id": 1052,
+              "nodeType": "StructuredDocumentation",
+              "src": "1764:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1054,
+            "name": "URIQueryForNonexistentToken",
+            "nameLocation": "1819:27:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1053,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1846:2:11"
+            },
+            "src": "1813:36:11"
+          },
+          {
+            "canonicalName": "IERC721AUpgradeable.TokenOwnership",
+            "id": 1061,
+            "members": [
+              {
+                "constant": false,
+                "id": 1056,
+                "mutability": "mutable",
+                "name": "addr",
+                "nameLocation": "1990:4:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "1982:12:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1055,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1982:7:11",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1058,
+                "mutability": "mutable",
+                "name": "startTimestamp",
+                "nameLocation": "2103:14:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "2096:21:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1057,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2096:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1060,
+                "mutability": "mutable",
+                "name": "burned",
+                "nameLocation": "2178:6:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "2173:11:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 1059,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2173:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "TokenOwnership",
+            "nameLocation": "1920:14:11",
+            "nodeType": "StructDefinition",
+            "scope": 1077,
+            "src": "1913:278:11",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IERC721AUpgradeable.AddressData",
+            "id": 1070,
+            "members": [
+              {
+                "constant": false,
+                "id": 1063,
+                "mutability": "mutable",
+                "name": "balance",
+                "nameLocation": "2346:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2339:14:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1062,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2339:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1065,
+                "mutability": "mutable",
+                "name": "numberMinted",
+                "nameLocation": "2445:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2438:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1064,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2438:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1067,
+                "mutability": "mutable",
+                "name": "numberBurned",
+                "nameLocation": "2549:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2542:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1066,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2542:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1069,
+                "mutability": "mutable",
+                "name": "aux",
+                "nameLocation": "2776:3:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2769:10:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1068,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2769:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "AddressData",
+            "nameLocation": "2262:11:11",
+            "nodeType": "StructDefinition",
+            "scope": 1077,
+            "src": "2255:531:11",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 1071,
+              "nodeType": "StructuredDocumentation",
+              "src": "2792:194:11",
+              "text": " @dev Returns the total amount of tokens stored by the contract.\n \n Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens."
+            },
+            "functionSelector": "18160ddd",
+            "id": 1076,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalSupply",
+            "nameLocation": "3000:11:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3011:2:11"
+            },
+            "returnParameters": {
+              "id": 1075,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1074,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1076,
+                  "src": "3037:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3037:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3036:9:11"
+            },
+            "scope": 1077,
+            "src": "2991:55:11",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1078,
+        "src": "353:2695:11",
+        "usedErrors": [
+          1018,
+          1021,
+          1024,
+          1027,
+          1030,
+          1033,
+          1036,
+          1039,
+          1042,
+          1045,
+          1048,
+          1051,
+          1054
+        ]
+      }
+    ],
+    "src": "84:2965:11"
+  },
+  "legacyAST": {
+    "absolutePath": "erc721a-upgradeable/contracts/IERC721AUpgradeable.sol",
+    "exportedSymbols": {
+      "IERC165Upgradeable": [
+        1006
+      ],
+      "IERC721AUpgradeable": [
+        1077
+      ],
+      "IERC721MetadataUpgradeable": [
+        330
+      ],
+      "IERC721Upgradeable": [
+        303
+      ]
+    },
+    "id": 1078,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1008,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "84:23:11"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "id": 1009,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1078,
+        "sourceUnit": 304,
+        "src": "109:81:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol",
+        "id": 1010,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1078,
+        "sourceUnit": 331,
+        "src": "191:100:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 1012,
+              "name": "IERC721Upgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 303,
+              "src": "386:18:11"
+            },
+            "id": 1013,
+            "nodeType": "InheritanceSpecifier",
+            "src": "386:18:11"
+          },
+          {
+            "baseName": {
+              "id": 1014,
+              "name": "IERC721MetadataUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 330,
+              "src": "406:26:11"
+            },
+            "id": 1015,
+            "nodeType": "InheritanceSpecifier",
+            "src": "406:26:11"
+          }
+        ],
+        "canonicalName": "IERC721AUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1011,
+          "nodeType": "StructuredDocumentation",
+          "src": "293:59:11",
+          "text": " @dev Interface of an ERC721A compliant contract."
+        },
+        "fullyImplemented": false,
+        "id": 1077,
+        "linearizedBaseContracts": [
+          1077,
+          330,
+          303,
+          1006
+        ],
+        "name": "IERC721AUpgradeable",
+        "nameLocation": "363:19:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 1016,
+              "nodeType": "StructuredDocumentation",
+              "src": "439:76:11",
+              "text": " The caller must own the token or be an approved operator."
+            },
+            "id": 1018,
+            "name": "ApprovalCallerNotOwnerNorApproved",
+            "nameLocation": "526:33:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1017,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "559:2:11"
+            },
+            "src": "520:42:11"
+          },
+          {
+            "documentation": {
+              "id": 1019,
+              "nodeType": "StructuredDocumentation",
+              "src": "568:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1021,
+            "name": "ApprovalQueryForNonexistentToken",
+            "nameLocation": "623:32:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1020,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "655:2:11"
+            },
+            "src": "617:41:11"
+          },
+          {
+            "documentation": {
+              "id": 1022,
+              "nodeType": "StructuredDocumentation",
+              "src": "664:66:11",
+              "text": " The caller cannot approve to their own address."
+            },
+            "id": 1024,
+            "name": "ApproveToCaller",
+            "nameLocation": "741:15:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1023,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "756:2:11"
+            },
+            "src": "735:24:11"
+          },
+          {
+            "documentation": {
+              "id": 1025,
+              "nodeType": "StructuredDocumentation",
+              "src": "765:66:11",
+              "text": " The caller cannot approve to the current owner."
+            },
+            "id": 1027,
+            "name": "ApprovalToCurrentOwner",
+            "nameLocation": "842:22:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1026,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "864:2:11"
+            },
+            "src": "836:31:11"
+          },
+          {
+            "documentation": {
+              "id": 1028,
+              "nodeType": "StructuredDocumentation",
+              "src": "873:65:11",
+              "text": " Cannot query the balance for the zero address."
+            },
+            "id": 1030,
+            "name": "BalanceQueryForZeroAddress",
+            "nameLocation": "949:26:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1029,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "975:2:11"
+            },
+            "src": "943:35:11"
+          },
+          {
+            "documentation": {
+              "id": 1031,
+              "nodeType": "StructuredDocumentation",
+              "src": "984:51:11",
+              "text": " Cannot mint to the zero address."
+            },
+            "id": 1033,
+            "name": "MintToZeroAddress",
+            "nameLocation": "1046:17:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1032,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1063:2:11"
+            },
+            "src": "1040:26:11"
+          },
+          {
+            "documentation": {
+              "id": 1034,
+              "nodeType": "StructuredDocumentation",
+              "src": "1072:72:11",
+              "text": " The quantity of tokens minted must be more than zero."
+            },
+            "id": 1036,
+            "name": "MintZeroQuantity",
+            "nameLocation": "1155:16:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1035,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1171:2:11"
+            },
+            "src": "1149:25:11"
+          },
+          {
+            "documentation": {
+              "id": 1037,
+              "nodeType": "StructuredDocumentation",
+              "src": "1180:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1039,
+            "name": "OwnerQueryForNonexistentToken",
+            "nameLocation": "1235:29:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1038,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1264:2:11"
+            },
+            "src": "1229:38:11"
+          },
+          {
+            "documentation": {
+              "id": 1040,
+              "nodeType": "StructuredDocumentation",
+              "src": "1273:76:11",
+              "text": " The caller must own the token or be an approved operator."
+            },
+            "id": 1042,
+            "name": "TransferCallerNotOwnerNorApproved",
+            "nameLocation": "1360:33:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1041,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1393:2:11"
+            },
+            "src": "1354:42:11"
+          },
+          {
+            "documentation": {
+              "id": 1043,
+              "nodeType": "StructuredDocumentation",
+              "src": "1402:53:11",
+              "text": " The token must be owned by `from`."
+            },
+            "id": 1045,
+            "name": "TransferFromIncorrectOwner",
+            "nameLocation": "1466:26:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1044,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1492:2:11"
+            },
+            "src": "1460:35:11"
+          },
+          {
+            "documentation": {
+              "id": 1046,
+              "nodeType": "StructuredDocumentation",
+              "src": "1501:109:11",
+              "text": " Cannot safely transfer to a contract that does not implement the ERC721Receiver interface."
+            },
+            "id": 1048,
+            "name": "TransferToNonERC721ReceiverImplementer",
+            "nameLocation": "1621:38:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1047,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1659:2:11"
+            },
+            "src": "1615:47:11"
+          },
+          {
+            "documentation": {
+              "id": 1049,
+              "nodeType": "StructuredDocumentation",
+              "src": "1668:55:11",
+              "text": " Cannot transfer to the zero address."
+            },
+            "id": 1051,
+            "name": "TransferToZeroAddress",
+            "nameLocation": "1734:21:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1050,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1755:2:11"
+            },
+            "src": "1728:30:11"
+          },
+          {
+            "documentation": {
+              "id": 1052,
+              "nodeType": "StructuredDocumentation",
+              "src": "1764:44:11",
+              "text": " The token does not exist."
+            },
+            "id": 1054,
+            "name": "URIQueryForNonexistentToken",
+            "nameLocation": "1819:27:11",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1053,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1846:2:11"
+            },
+            "src": "1813:36:11"
+          },
+          {
+            "canonicalName": "IERC721AUpgradeable.TokenOwnership",
+            "id": 1061,
+            "members": [
+              {
+                "constant": false,
+                "id": 1056,
+                "mutability": "mutable",
+                "name": "addr",
+                "nameLocation": "1990:4:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "1982:12:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1055,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1982:7:11",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1058,
+                "mutability": "mutable",
+                "name": "startTimestamp",
+                "nameLocation": "2103:14:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "2096:21:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1057,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2096:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1060,
+                "mutability": "mutable",
+                "name": "burned",
+                "nameLocation": "2178:6:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1061,
+                "src": "2173:11:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 1059,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2173:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "TokenOwnership",
+            "nameLocation": "1920:14:11",
+            "nodeType": "StructDefinition",
+            "scope": 1077,
+            "src": "1913:278:11",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IERC721AUpgradeable.AddressData",
+            "id": 1070,
+            "members": [
+              {
+                "constant": false,
+                "id": 1063,
+                "mutability": "mutable",
+                "name": "balance",
+                "nameLocation": "2346:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2339:14:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1062,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2339:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1065,
+                "mutability": "mutable",
+                "name": "numberMinted",
+                "nameLocation": "2445:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2438:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1064,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2438:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1067,
+                "mutability": "mutable",
+                "name": "numberBurned",
+                "nameLocation": "2549:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2542:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1066,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2542:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1069,
+                "mutability": "mutable",
+                "name": "aux",
+                "nameLocation": "2776:3:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 1070,
+                "src": "2769:10:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 1068,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2769:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "AddressData",
+            "nameLocation": "2262:11:11",
+            "nodeType": "StructDefinition",
+            "scope": 1077,
+            "src": "2255:531:11",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 1071,
+              "nodeType": "StructuredDocumentation",
+              "src": "2792:194:11",
+              "text": " @dev Returns the total amount of tokens stored by the contract.\n \n Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens."
+            },
+            "functionSelector": "18160ddd",
+            "id": 1076,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalSupply",
+            "nameLocation": "3000:11:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3011:2:11"
+            },
+            "returnParameters": {
+              "id": 1075,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1074,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1076,
+                  "src": "3037:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3037:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3036:9:11"
+            },
+            "scope": 1077,
+            "src": "2991:55:11",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1078,
+        "src": "353:2695:11",
+        "usedErrors": [
+          1018,
+          1021,
+          1024,
+          1027,
+          1030,
+          1033,
+          1036,
+          1039,
+          1042,
+          1045,
+          1048,
+          1051,
+          1054
+        ]
+      }
+    ],
+    "src": "84:2965:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.380Z",
+  "devdoc": {
+    "details": "Interface of an ERC721A compliant contract.",
+    "kind": "dev",
+    "methods": {
+      "approve(address,uint256)": {
+        "details": "Gives permission to `to` to transfer `tokenId` token to another account. The approval is cleared when the token is transferred. Only a single account can be approved at a time, so approving the zero address clears previous approvals. Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist. Emits an {Approval} event."
+      },
+      "balanceOf(address)": {
+        "details": "Returns the number of tokens in ``owner``'s account."
+      },
+      "getApproved(uint256)": {
+        "details": "Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist."
+      },
+      "isApprovedForAll(address,address)": {
+        "details": "Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}"
+      },
+      "name()": {
+        "details": "Returns the token collection name."
+      },
+      "ownerOf(uint256)": {
+        "details": "Returns the owner of the `tokenId` token. Requirements: - `tokenId` must exist."
+      },
+      "safeTransferFrom(address,address,uint256)": {
+        "details": "Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients are aware of the ERC721 protocol to prevent tokens from being forever locked. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must have been allowed to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event."
+      },
+      "safeTransferFrom(address,address,uint256,bytes)": {
+        "details": "Safely transfers `tokenId` token from `from` to `to`. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event."
+      },
+      "setApprovalForAll(address,bool)": {
+        "details": "Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+      },
+      "symbol()": {
+        "details": "Returns the token collection symbol."
+      },
+      "tokenURI(uint256)": {
+        "details": "Returns the Uniform Resource Identifier (URI) for `tokenId` token."
+      },
+      "totalSupply()": {
+        "details": "Returns the total amount of tokens stored by the contract.  Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "Transfers `tokenId` token from `from` to `to`. WARNING: Usage of this method is discouraged, use {safeTransferFrom} whenever possible. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. Emits a {Transfer} event."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "errors": {
+      "ApprovalCallerNotOwnerNorApproved()": [
+        {
+          "notice": "The caller must own the token or be an approved operator."
+        }
+      ],
+      "ApprovalQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ],
+      "ApprovalToCurrentOwner()": [
+        {
+          "notice": "The caller cannot approve to the current owner."
+        }
+      ],
+      "ApproveToCaller()": [
+        {
+          "notice": "The caller cannot approve to their own address."
+        }
+      ],
+      "BalanceQueryForZeroAddress()": [
+        {
+          "notice": "Cannot query the balance for the zero address."
+        }
+      ],
+      "MintToZeroAddress()": [
+        {
+          "notice": "Cannot mint to the zero address."
+        }
+      ],
+      "MintZeroQuantity()": [
+        {
+          "notice": "The quantity of tokens minted must be more than zero."
+        }
+      ],
+      "OwnerQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ],
+      "TransferCallerNotOwnerNorApproved()": [
+        {
+          "notice": "The caller must own the token or be an approved operator."
+        }
+      ],
+      "TransferFromIncorrectOwner()": [
+        {
+          "notice": "The token must be owned by `from`."
+        }
+      ],
+      "TransferToNonERC721ReceiverImplementer()": [
+        {
+          "notice": "Cannot safely transfer to a contract that does not implement the ERC721Receiver interface."
+        }
+      ],
+      "TransferToZeroAddress()": [
+        {
+          "notice": "Cannot transfer to the zero address."
+        }
+      ],
+      "URIQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ]
+    },
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,2087 @@
+{
+  "contractName": "LazyMint",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "startTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "baseURI",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "encryptedBaseURI",
+          "type": "bytes"
+        }
+      ],
+      "name": "TokensLazyMinted",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getBaseURICount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBatchIdAtIndex",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_baseURIForTokens",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "lazyMint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"startTokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"baseURI\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"encryptedBaseURI\",\"type\":\"bytes\"}],\"name\":\"TokensLazyMinted\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getBaseURICount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getBatchIdAtIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_baseURIForTokens\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"lazyMint\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getBaseURICount()\":{\"details\":\"Each batch of tokens has an in ID and an associated `baseURI`.                  See {batchIds}.\"},\"getBatchIdAtIndex(uint256)\":{\"details\":\"See {getBaseURICount}.\",\"params\":{\"_index\":\"ID of a token.\"}},\"lazyMint(uint256,string,bytes)\":{\"params\":{\"_amount\":\"The number of NFTs to lazy mint.\",\"_baseURIForTokens\":\"The base URI for the 'n' number of NFTs being lazy minted, where the metadata for each                           of those NFTs is `${baseURIForTokens}/${tokenId}`.\",\"_data\":\"Additional bytes data to be used at the discretion of the consumer of the contract.\"},\"returns\":{\"batchId\":\"         A unique integer identifier for the batch of NFTs lazy minted together.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getBaseURICount()\":{\"notice\":\"Returns the count of batches of NFTs.\"},\"getBatchIdAtIndex(uint256)\":{\"notice\":\"Returns the ID for the batch of tokens the given tokenId belongs to.\"},\"lazyMint(uint256,string,bytes)\":{\"notice\":\"Lets an authorized address lazy mint a given amount of NFTs.\"}},\"notice\":\"The `LazyMint` is a contract extension for any base NFT contract. It lets you 'lazy mint' any number of NFTs  at once. Here, 'lazy mint' means defining the metadata for particular tokenIds of your NFT contract, without actually  minting a non-zero balance of NFTs of those tokenIds.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/LazyMint.sol\":\"LazyMint\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/BatchMintMetadata.sol\":{\"keccak256\":\"0xc0aa1014d8e7dac53199204ea1e95d2488ad5aa85420d97853d3f8dee96f5f67\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://e7ebb973ce9804b0ef03b0a6336dd4da4ace59543ab499fe84ba60f8495ee8d7\",\"dweb:/ipfs/Qmdee8gPVFtQ6sP44bRdtKVkykm8Q41bpxfFrPfXkaxRt5\"]},\"project:/contracts/extension/LazyMint.sol\":{\"keccak256\":\"0xe88710d7f2ac2834be6ed3c2bff1314f0d9c8c65aec7d05df9a6381d48a6f170\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://c4734764afb84ecb1c5a99a441296a38f524c602227d0eae9bca3b325c895827\",\"dweb:/ipfs/QmWbwqzY6SqgitawoYeZmHiFvW6dp2fHoQfnb9WuVNr6E9\"]},\"project:/contracts/extension/interface/ILazyMint.sol\":{\"keccak256\":\"0x480953502a40e438d855392e322adc0369e2109f6d46fb9ec2bb3ad0afbb0aec\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://2b3bb332d4f5e38f9786b00564ad417e48c689b4a92a60888c3845b986c995a3\",\"dweb:/ipfs/QmPVM4KTUeLD7uVCfP8MBQNRo7pU8xF3rXQuDcx3C6cLxA\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\nimport \"./interface/ILazyMint.sol\";\nimport \"./BatchMintMetadata.sol\";\n\n/**\n *  The `LazyMint` is a contract extension for any base NFT contract. It lets you 'lazy mint' any number of NFTs\n *  at once. Here, 'lazy mint' means defining the metadata for particular tokenIds of your NFT contract, without actually\n *  minting a non-zero balance of NFTs of those tokenIds.\n */\n\nabstract contract LazyMint is ILazyMint, BatchMintMetadata {\n    /// @notice The tokenId assigned to the next new NFT to be lazy minted.\n    uint256 internal nextTokenIdToLazyMint;\n\n    /**\n     *  @notice                  Lets an authorized address lazy mint a given amount of NFTs.\n     *\n     *  @param _amount           The number of NFTs to lazy mint.\n     *  @param _baseURIForTokens The base URI for the 'n' number of NFTs being lazy minted, where the metadata for each\n     *                           of those NFTs is `${baseURIForTokens}/${tokenId}`.\n     *  @param _data             Additional bytes data to be used at the discretion of the consumer of the contract.\n     *  @return batchId          A unique integer identifier for the batch of NFTs lazy minted together.\n     */\n    function lazyMint(\n        uint256 _amount,\n        string calldata _baseURIForTokens,\n        bytes calldata _data\n    ) public virtual override returns (uint256 batchId) {\n        if (!_canLazyMint()) {\n            revert(\"Not authorized\");\n        }\n\n        if (_amount == 0) {\n            revert(\"0 amt\");\n        }\n\n        uint256 startId = nextTokenIdToLazyMint;\n\n        (nextTokenIdToLazyMint, batchId) = _batchMintMetadata(startId, _amount, _baseURIForTokens);\n\n        emit TokensLazyMinted(startId, startId + _amount - 1, _baseURIForTokens, _data);\n\n        return batchId;\n    }\n\n    /// @dev Returns whether lazy minting can be performed in the given execution context.\n    function _canLazyMint() internal view virtual returns (bool);\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/LazyMint.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/LazyMint.sol",
+    "exportedSymbols": {
+      "BatchMintMetadata": [
+        12157
+      ],
+      "ILazyMint": [
+        14645
+      ],
+      "LazyMint": [
+        13123
+      ]
+    },
+    "id": 13124,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13047,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:24"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/ILazyMint.sol",
+        "file": "./interface/ILazyMint.sol",
+        "id": 13048,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13124,
+        "sourceUnit": 14646,
+        "src": "86:35:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/extension/BatchMintMetadata.sol",
+        "file": "./BatchMintMetadata.sol",
+        "id": 13049,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13124,
+        "sourceUnit": 12158,
+        "src": "122:33:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 13051,
+              "name": "ILazyMint",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 14645,
+              "src": "489:9:24"
+            },
+            "id": 13052,
+            "nodeType": "InheritanceSpecifier",
+            "src": "489:9:24"
+          },
+          {
+            "baseName": {
+              "id": 13053,
+              "name": "BatchMintMetadata",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 12157,
+              "src": "500:17:24"
+            },
+            "id": 13054,
+            "nodeType": "InheritanceSpecifier",
+            "src": "500:17:24"
+          }
+        ],
+        "canonicalName": "LazyMint",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 13050,
+          "nodeType": "StructuredDocumentation",
+          "src": "157:300:24",
+          "text": "  The `LazyMint` is a contract extension for any base NFT contract. It lets you 'lazy mint' any number of NFTs\n  at once. Here, 'lazy mint' means defining the metadata for particular tokenIds of your NFT contract, without actually\n  minting a non-zero balance of NFTs of those tokenIds."
+        },
+        "fullyImplemented": false,
+        "id": 13123,
+        "linearizedBaseContracts": [
+          13123,
+          12157,
+          14645
+        ],
+        "name": "LazyMint",
+        "nameLocation": "477:8:24",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 13055,
+              "nodeType": "StructuredDocumentation",
+              "src": "524:71:24",
+              "text": "@notice The tokenId assigned to the next new NFT to be lazy minted."
+            },
+            "id": 13057,
+            "mutability": "mutable",
+            "name": "nextTokenIdToLazyMint",
+            "nameLocation": "617:21:24",
+            "nodeType": "VariableDeclaration",
+            "scope": 13123,
+            "src": "600:38:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 13056,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "600:7:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              14644
+            ],
+            "body": {
+              "id": 13115,
+              "nodeType": "Block",
+              "src": "1426:420:24",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 13072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1440:15:24",
+                    "subExpression": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 13070,
+                        "name": "_canLazyMint",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13122,
+                        "src": "1441:12:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                          "typeString": "function () view returns (bool)"
+                        }
+                      },
+                      "id": 13071,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1441:14:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13078,
+                  "nodeType": "IfStatement",
+                  "src": "1436:70:24",
+                  "trueBody": {
+                    "id": 13077,
+                    "nodeType": "Block",
+                    "src": "1457:49:24",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "4e6f7420617574686f72697a6564",
+                              "id": 13074,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1478:16:24",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              },
+                              "value": "Not authorized"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              }
+                            ],
+                            "id": 13073,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1471:6:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 13075,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1471:24:24",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 13076,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1471:24:24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 13081,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 13079,
+                      "name": "_amount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13060,
+                      "src": "1520:7:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 13080,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1531:1:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1520:12:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13087,
+                  "nodeType": "IfStatement",
+                  "src": "1516:58:24",
+                  "trueBody": {
+                    "id": 13086,
+                    "nodeType": "Block",
+                    "src": "1534:40:24",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "3020616d74",
+                              "id": 13083,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1555:7:24",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_48a2ffc405bd01b6d581e1962140c15d8313f08001cf89458c30107c60719bf0",
+                                "typeString": "literal_string \"0 amt\""
+                              },
+                              "value": "0 amt"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_48a2ffc405bd01b6d581e1962140c15d8313f08001cf89458c30107c60719bf0",
+                                "typeString": "literal_string \"0 amt\""
+                              }
+                            ],
+                            "id": 13082,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1548:6:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 13084,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1548:15:24",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 13085,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1548:15:24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "assignments": [
+                    13089
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 13089,
+                      "mutability": "mutable",
+                      "name": "startId",
+                      "nameLocation": "1592:7:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 13115,
+                      "src": "1584:15:24",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 13088,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1584:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 13091,
+                  "initialValue": {
+                    "id": 13090,
+                    "name": "nextTokenIdToLazyMint",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13057,
+                    "src": "1602:21:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1584:39:24"
+                },
+                {
+                  "expression": {
+                    "id": 13100,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "components": [
+                        {
+                          "id": 13092,
+                          "name": "nextTokenIdToLazyMint",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13057,
+                          "src": "1635:21:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13093,
+                          "name": "batchId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13068,
+                          "src": "1658:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 13094,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "TupleExpression",
+                      "src": "1634:32:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 13096,
+                          "name": "startId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13089,
+                          "src": "1688:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13097,
+                          "name": "_amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13060,
+                          "src": "1697:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13098,
+                          "name": "_baseURIForTokens",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13062,
+                          "src": "1706:17:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_calldata_ptr",
+                            "typeString": "string calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_calldata_ptr",
+                            "typeString": "string calldata"
+                          }
+                        ],
+                        "id": 13095,
+                        "name": "_batchMintMetadata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12156,
+                        "src": "1669:18:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$returns$_t_uint256_$_t_uint256_$",
+                          "typeString": "function (uint256,uint256,string memory) returns (uint256,uint256)"
+                        }
+                      },
+                      "id": 13099,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1669:55:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "src": "1634:90:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13101,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1634:90:24"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 13103,
+                        "name": "startId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13089,
+                        "src": "1757:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 13108,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 13106,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 13104,
+                            "name": "startId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13089,
+                            "src": "1766:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "+",
+                          "rightExpression": {
+                            "id": 13105,
+                            "name": "_amount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13060,
+                            "src": "1776:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1766:17:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "hexValue": "31",
+                          "id": 13107,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1786:1:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "1766:21:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 13109,
+                        "name": "_baseURIForTokens",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13062,
+                        "src": "1789:17:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        }
+                      },
+                      {
+                        "id": 13110,
+                        "name": "_data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13064,
+                        "src": "1808:5:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "id": 13102,
+                      "name": "TokensLazyMinted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14632,
+                      "src": "1740:16:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeString": "function (uint256,uint256,string memory,bytes memory)"
+                      }
+                    },
+                    "id": 13111,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1740:74:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13112,
+                  "nodeType": "EmitStatement",
+                  "src": "1735:79:24"
+                },
+                {
+                  "expression": {
+                    "id": 13113,
+                    "name": "batchId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13068,
+                    "src": "1832:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13069,
+                  "id": 13114,
+                  "nodeType": "Return",
+                  "src": "1825:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 13058,
+              "nodeType": "StructuredDocumentation",
+              "src": "645:604:24",
+              "text": "  @notice                  Lets an authorized address lazy mint a given amount of NFTs.\n  @param _amount           The number of NFTs to lazy mint.\n  @param _baseURIForTokens The base URI for the 'n' number of NFTs being lazy minted, where the metadata for each\n                           of those NFTs is `${baseURIForTokens}/${tokenId}`.\n  @param _data             Additional bytes data to be used at the discretion of the consumer of the contract.\n  @return batchId          A unique integer identifier for the batch of NFTs lazy minted together."
+            },
+            "functionSelector": "d37c353b",
+            "id": 13116,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lazyMint",
+            "nameLocation": "1263:8:24",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 13066,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1391:8:24"
+            },
+            "parameters": {
+              "id": 13065,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13060,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "1289:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1281:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13059,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1281:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13062,
+                  "mutability": "mutable",
+                  "name": "_baseURIForTokens",
+                  "nameLocation": "1322:17:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1306:33:24",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 13061,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1306:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13064,
+                  "mutability": "mutable",
+                  "name": "_data",
+                  "nameLocation": "1364:5:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1349:20:24",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 13063,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1349:5:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1271:104:24"
+            },
+            "returnParameters": {
+              "id": 13069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13068,
+                  "mutability": "mutable",
+                  "name": "batchId",
+                  "nameLocation": "1417:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1409:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13067,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1409:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1408:17:24"
+            },
+            "scope": 13123,
+            "src": "1254:592:24",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 13117,
+              "nodeType": "StructuredDocumentation",
+              "src": "1852:86:24",
+              "text": "@dev Returns whether lazy minting can be performed in the given execution context."
+            },
+            "id": 13122,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canLazyMint",
+            "nameLocation": "1952:12:24",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13118,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1964:2:24"
+            },
+            "returnParameters": {
+              "id": 13121,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13120,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13122,
+                  "src": "1998:4:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13119,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1998:4:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1997:6:24"
+            },
+            "scope": 13123,
+            "src": "1943:61:24",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 13124,
+        "src": "459:1547:24",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1968:24"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/LazyMint.sol",
+    "exportedSymbols": {
+      "BatchMintMetadata": [
+        12157
+      ],
+      "ILazyMint": [
+        14645
+      ],
+      "LazyMint": [
+        13123
+      ]
+    },
+    "id": 13124,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13047,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:24"
+      },
+      {
+        "absolutePath": "project:/contracts/extension/interface/ILazyMint.sol",
+        "file": "./interface/ILazyMint.sol",
+        "id": 13048,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13124,
+        "sourceUnit": 14646,
+        "src": "86:35:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/extension/BatchMintMetadata.sol",
+        "file": "./BatchMintMetadata.sol",
+        "id": 13049,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 13124,
+        "sourceUnit": 12158,
+        "src": "122:33:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 13051,
+              "name": "ILazyMint",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 14645,
+              "src": "489:9:24"
+            },
+            "id": 13052,
+            "nodeType": "InheritanceSpecifier",
+            "src": "489:9:24"
+          },
+          {
+            "baseName": {
+              "id": 13053,
+              "name": "BatchMintMetadata",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 12157,
+              "src": "500:17:24"
+            },
+            "id": 13054,
+            "nodeType": "InheritanceSpecifier",
+            "src": "500:17:24"
+          }
+        ],
+        "canonicalName": "LazyMint",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 13050,
+          "nodeType": "StructuredDocumentation",
+          "src": "157:300:24",
+          "text": "  The `LazyMint` is a contract extension for any base NFT contract. It lets you 'lazy mint' any number of NFTs\n  at once. Here, 'lazy mint' means defining the metadata for particular tokenIds of your NFT contract, without actually\n  minting a non-zero balance of NFTs of those tokenIds."
+        },
+        "fullyImplemented": false,
+        "id": 13123,
+        "linearizedBaseContracts": [
+          13123,
+          12157,
+          14645
+        ],
+        "name": "LazyMint",
+        "nameLocation": "477:8:24",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 13055,
+              "nodeType": "StructuredDocumentation",
+              "src": "524:71:24",
+              "text": "@notice The tokenId assigned to the next new NFT to be lazy minted."
+            },
+            "id": 13057,
+            "mutability": "mutable",
+            "name": "nextTokenIdToLazyMint",
+            "nameLocation": "617:21:24",
+            "nodeType": "VariableDeclaration",
+            "scope": 13123,
+            "src": "600:38:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 13056,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "600:7:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              14644
+            ],
+            "body": {
+              "id": 13115,
+              "nodeType": "Block",
+              "src": "1426:420:24",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 13072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1440:15:24",
+                    "subExpression": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 13070,
+                        "name": "_canLazyMint",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13122,
+                        "src": "1441:12:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                          "typeString": "function () view returns (bool)"
+                        }
+                      },
+                      "id": 13071,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1441:14:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13078,
+                  "nodeType": "IfStatement",
+                  "src": "1436:70:24",
+                  "trueBody": {
+                    "id": 13077,
+                    "nodeType": "Block",
+                    "src": "1457:49:24",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "4e6f7420617574686f72697a6564",
+                              "id": 13074,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1478:16:24",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              },
+                              "value": "Not authorized"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_fac3bac318c0d00994f57b0f2f4c643c313072b71db2302bf4b900309cc50b36",
+                                "typeString": "literal_string \"Not authorized\""
+                              }
+                            ],
+                            "id": 13073,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1471:6:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 13075,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1471:24:24",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 13076,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1471:24:24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 13081,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 13079,
+                      "name": "_amount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 13060,
+                      "src": "1520:7:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 13080,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1531:1:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1520:12:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 13087,
+                  "nodeType": "IfStatement",
+                  "src": "1516:58:24",
+                  "trueBody": {
+                    "id": 13086,
+                    "nodeType": "Block",
+                    "src": "1534:40:24",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "hexValue": "3020616d74",
+                              "id": 13083,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1555:7:24",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_48a2ffc405bd01b6d581e1962140c15d8313f08001cf89458c30107c60719bf0",
+                                "typeString": "literal_string \"0 amt\""
+                              },
+                              "value": "0 amt"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_48a2ffc405bd01b6d581e1962140c15d8313f08001cf89458c30107c60719bf0",
+                                "typeString": "literal_string \"0 amt\""
+                              }
+                            ],
+                            "id": 13082,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              4294967277,
+                              4294967277
+                            ],
+                            "referencedDeclaration": 4294967277,
+                            "src": "1548:6:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 13084,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1548:15:24",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 13085,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1548:15:24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "assignments": [
+                    13089
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 13089,
+                      "mutability": "mutable",
+                      "name": "startId",
+                      "nameLocation": "1592:7:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 13115,
+                      "src": "1584:15:24",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 13088,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1584:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 13091,
+                  "initialValue": {
+                    "id": 13090,
+                    "name": "nextTokenIdToLazyMint",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13057,
+                    "src": "1602:21:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1584:39:24"
+                },
+                {
+                  "expression": {
+                    "id": 13100,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "components": [
+                        {
+                          "id": 13092,
+                          "name": "nextTokenIdToLazyMint",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13057,
+                          "src": "1635:21:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13093,
+                          "name": "batchId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13068,
+                          "src": "1658:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 13094,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "TupleExpression",
+                      "src": "1634:32:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 13096,
+                          "name": "startId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13089,
+                          "src": "1688:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13097,
+                          "name": "_amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13060,
+                          "src": "1697:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 13098,
+                          "name": "_baseURIForTokens",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 13062,
+                          "src": "1706:17:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_calldata_ptr",
+                            "typeString": "string calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_calldata_ptr",
+                            "typeString": "string calldata"
+                          }
+                        ],
+                        "id": 13095,
+                        "name": "_batchMintMetadata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12156,
+                        "src": "1669:18:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$returns$_t_uint256_$_t_uint256_$",
+                          "typeString": "function (uint256,uint256,string memory) returns (uint256,uint256)"
+                        }
+                      },
+                      "id": 13099,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1669:55:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "src": "1634:90:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13101,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1634:90:24"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 13103,
+                        "name": "startId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13089,
+                        "src": "1757:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 13108,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 13106,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 13104,
+                            "name": "startId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13089,
+                            "src": "1766:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "+",
+                          "rightExpression": {
+                            "id": 13105,
+                            "name": "_amount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13060,
+                            "src": "1776:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1766:17:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "hexValue": "31",
+                          "id": 13107,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1786:1:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "1766:21:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 13109,
+                        "name": "_baseURIForTokens",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13062,
+                        "src": "1789:17:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        }
+                      },
+                      {
+                        "id": 13110,
+                        "name": "_data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13064,
+                        "src": "1808:5:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "id": 13102,
+                      "name": "TokensLazyMinted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 14632,
+                      "src": "1740:16:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeString": "function (uint256,uint256,string memory,bytes memory)"
+                      }
+                    },
+                    "id": 13111,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1740:74:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 13112,
+                  "nodeType": "EmitStatement",
+                  "src": "1735:79:24"
+                },
+                {
+                  "expression": {
+                    "id": 13113,
+                    "name": "batchId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 13068,
+                    "src": "1832:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 13069,
+                  "id": 13114,
+                  "nodeType": "Return",
+                  "src": "1825:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 13058,
+              "nodeType": "StructuredDocumentation",
+              "src": "645:604:24",
+              "text": "  @notice                  Lets an authorized address lazy mint a given amount of NFTs.\n  @param _amount           The number of NFTs to lazy mint.\n  @param _baseURIForTokens The base URI for the 'n' number of NFTs being lazy minted, where the metadata for each\n                           of those NFTs is `${baseURIForTokens}/${tokenId}`.\n  @param _data             Additional bytes data to be used at the discretion of the consumer of the contract.\n  @return batchId          A unique integer identifier for the batch of NFTs lazy minted together."
+            },
+            "functionSelector": "d37c353b",
+            "id": 13116,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lazyMint",
+            "nameLocation": "1263:8:24",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 13066,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1391:8:24"
+            },
+            "parameters": {
+              "id": 13065,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13060,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "1289:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1281:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13059,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1281:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13062,
+                  "mutability": "mutable",
+                  "name": "_baseURIForTokens",
+                  "nameLocation": "1322:17:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1306:33:24",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 13061,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1306:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13064,
+                  "mutability": "mutable",
+                  "name": "_data",
+                  "nameLocation": "1364:5:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1349:20:24",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 13063,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1349:5:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1271:104:24"
+            },
+            "returnParameters": {
+              "id": 13069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13068,
+                  "mutability": "mutable",
+                  "name": "batchId",
+                  "nameLocation": "1417:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13116,
+                  "src": "1409:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13067,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1409:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1408:17:24"
+            },
+            "scope": 13123,
+            "src": "1254:592:24",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 13117,
+              "nodeType": "StructuredDocumentation",
+              "src": "1852:86:24",
+              "text": "@dev Returns whether lazy minting can be performed in the given execution context."
+            },
+            "id": 13122,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_canLazyMint",
+            "nameLocation": "1952:12:24",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13118,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1964:2:24"
+            },
+            "returnParameters": {
+              "id": 13121,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13120,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13122,
+                  "src": "1998:4:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 13119,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1998:4:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1997:6:24"
+            },
+            "scope": 13123,
+            "src": "1943:61:24",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 13124,
+        "src": "459:1547:24",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1968:24"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.484Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getBaseURICount()": {
+        "details": "Each batch of tokens has an in ID and an associated `baseURI`.                  See {batchIds}."
+      },
+      "getBatchIdAtIndex(uint256)": {
+        "details": "See {getBaseURICount}.",
+        "params": {
+          "_index": "ID of a token."
+        }
+      },
+      "lazyMint(uint256,string,bytes)": {
+        "params": {
+          "_amount": "The number of NFTs to lazy mint.",
+          "_baseURIForTokens": "The base URI for the 'n' number of NFTs being lazy minted, where the metadata for each                           of those NFTs is `${baseURIForTokens}/${tokenId}`.",
+          "_data": "Additional bytes data to be used at the discretion of the consumer of the contract."
+        },
+        "returns": {
+          "batchId": "         A unique integer identifier for the batch of NFTs lazy minted together."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getBaseURICount()": {
+        "notice": "Returns the count of batches of NFTs."
+      },
+      "getBatchIdAtIndex(uint256)": {
+        "notice": "Returns the ID for the batch of tokens the given tokenId belongs to."
+      },
+      "lazyMint(uint256,string,bytes)": {
+        "notice": "Lets an authorized address lazy mint a given amount of NFTs."
+      }
+    },
+    "notice": "The `LazyMint` is a contract extension for any base NFT contract. It lets you 'lazy mint' any number of NFTs  at once. Here, 'lazy mint' means defining the metadata for particular tokenIds of your NFT contract, without actually  minting a non-zero balance of NFTs of those tokenIds.",
+    "version": 1
+  }
+}

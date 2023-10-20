@@ -1,0 +1,480 @@
+{
+  "contractName": "IOperatorFilterToggle",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "OperatorRestriction",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "operatorRestriction",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "restriction",
+          "type": "bool"
+        }
+      ],
+      "name": "setOperatorRestriction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"restriction\",\"type\":\"bool\"}],\"name\":\"OperatorRestriction\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"operatorRestriction\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"restriction\",\"type\":\"bool\"}],\"name\":\"setOperatorRestriction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"thirdweb\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/interface/IOperatorFilterToggle.sol\":\"IOperatorFilterToggle\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/interface/IOperatorFilterToggle.sol\":{\"keccak256\":\"0xff05e83218d75f27210f20357d27849a2963b82830ca673a25c787f14b4203b1\",\"license\":\"Apache 2.0\",\"urls\":[\"bzz-raw://36434c142d2e2f74a826f1240f8c12432eba0924fa7c888514592c46d4071674\",\"dweb:/ipfs/QmYntnzMvf6Duc9yhFyP4eheicbfUvBGcaXde9xqCrXPan\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache 2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\ninterface IOperatorFilterToggle {\n    event OperatorRestriction(bool restriction);\n\n    function operatorRestriction() external view returns (bool);\n\n    function setOperatorRestriction(bool restriction) external;\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/interface/IOperatorFilterToggle.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/interface/IOperatorFilterToggle.sol",
+    "exportedSymbols": {
+      "IOperatorFilterToggle": [
+        14858
+      ]
+    },
+    "id": 14859,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14842,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:40"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IOperatorFilterToggle",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 14843,
+          "nodeType": "StructuredDocumentation",
+          "src": "64:21:40",
+          "text": "@author thirdweb"
+        },
+        "fullyImplemented": false,
+        "id": 14858,
+        "linearizedBaseContracts": [
+          14858
+        ],
+        "name": "IOperatorFilterToggle",
+        "nameLocation": "96:21:40",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "id": 14847,
+            "name": "OperatorRestriction",
+            "nameLocation": "130:19:40",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 14846,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14845,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "restriction",
+                  "nameLocation": "155:11:40",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14847,
+                  "src": "150:16:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14844,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:18:40"
+            },
+            "src": "124:44:40"
+          },
+          {
+            "functionSelector": "504c6e01",
+            "id": 14852,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "operatorRestriction",
+            "nameLocation": "183:19:40",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14848,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "202:2:40"
+            },
+            "returnParameters": {
+              "id": 14851,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14850,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14852,
+                  "src": "228:4:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14849,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "228:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "227:6:40"
+            },
+            "scope": 14858,
+            "src": "174:60:40",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "32f0cd64",
+            "id": 14857,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setOperatorRestriction",
+            "nameLocation": "249:22:40",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14855,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14854,
+                  "mutability": "mutable",
+                  "name": "restriction",
+                  "nameLocation": "277:11:40",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14857,
+                  "src": "272:16:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14853,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:18:40"
+            },
+            "returnParameters": {
+              "id": 14856,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "298:0:40"
+            },
+            "scope": 14858,
+            "src": "240:59:40",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14859,
+        "src": "86:215:40",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:263:40"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/interface/IOperatorFilterToggle.sol",
+    "exportedSymbols": {
+      "IOperatorFilterToggle": [
+        14858
+      ]
+    },
+    "id": 14859,
+    "license": "Apache 2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14842,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:40"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IOperatorFilterToggle",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 14843,
+          "nodeType": "StructuredDocumentation",
+          "src": "64:21:40",
+          "text": "@author thirdweb"
+        },
+        "fullyImplemented": false,
+        "id": 14858,
+        "linearizedBaseContracts": [
+          14858
+        ],
+        "name": "IOperatorFilterToggle",
+        "nameLocation": "96:21:40",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "id": 14847,
+            "name": "OperatorRestriction",
+            "nameLocation": "130:19:40",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 14846,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14845,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "restriction",
+                  "nameLocation": "155:11:40",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14847,
+                  "src": "150:16:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14844,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:18:40"
+            },
+            "src": "124:44:40"
+          },
+          {
+            "functionSelector": "504c6e01",
+            "id": 14852,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "operatorRestriction",
+            "nameLocation": "183:19:40",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14848,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "202:2:40"
+            },
+            "returnParameters": {
+              "id": 14851,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14850,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14852,
+                  "src": "228:4:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14849,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "228:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "227:6:40"
+            },
+            "scope": 14858,
+            "src": "174:60:40",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "32f0cd64",
+            "id": 14857,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setOperatorRestriction",
+            "nameLocation": "249:22:40",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14855,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14854,
+                  "mutability": "mutable",
+                  "name": "restriction",
+                  "nameLocation": "277:11:40",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14857,
+                  "src": "272:16:40",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14853,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:4:40",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:18:40"
+            },
+            "returnParameters": {
+              "id": 14856,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "298:0:40"
+            },
+            "scope": 14858,
+            "src": "240:59:40",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14859,
+        "src": "86:215:40",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:263:40"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.499Z",
+  "devdoc": {
+    "author": "thirdweb",
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

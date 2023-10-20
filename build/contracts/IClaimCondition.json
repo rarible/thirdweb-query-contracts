@@ -1,0 +1,592 @@
+{
+  "contractName": "IClaimCondition",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.12+commit.f00d7308\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten  or added to by the contract admin. At any moment, there is only one active claim condition.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/extension/interface/IClaimCondition.sol\":\"IClaimCondition\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/extension/interface/IClaimCondition.sol\":{\"keccak256\":\"0x391e69970031edb30dfa59f8db33c7446b349cd5ec505fd99f0f0b672b19e6d6\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://fd9eafca6098421f3aa25bf0a0b24386facc764b7ecb8e6ce4a890afa3c6d459\",\"dweb:/ipfs/QmPXTSX2ie5wsZ6FyXWS4YMa7aPpYNyza9Rym1n799B5LU\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\n/**\n *  The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.\n *\n *  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten\n *  or added to by the contract admin. At any moment, there is only one active claim condition.\n */\n\ninterface IClaimCondition {\n    /**\n     *  @notice The criteria that make up a claim condition.\n     *\n     *  @param startTimestamp                 The unix timestamp after which the claim condition applies.\n     *                                        The same claim condition applies until the `startTimestamp`\n     *                                        of the next claim condition.\n     *\n     *  @param maxClaimableSupply             The maximum total number of tokens that can be claimed under\n     *                                        the claim condition.\n     *\n     *  @param supplyClaimed                  At any given point, the number of tokens that have been claimed\n     *                                        under the claim condition.\n     *\n     *  @param quantityLimitPerWallet         The maximum number of tokens that can be claimed by a wallet.\n     *\n     *  @param merkleRoot                     The allowlist of addresses that can claim tokens under the claim\n     *                                        condition.\n     *\n     *  @param pricePerToken                  The price required to pay per token claimed.\n     *\n     *  @param currency                       The currency in which the `pricePerToken` must be paid.\n     *\n     *  @param metadata                       Claim condition metadata.\n     */\n    struct ClaimCondition {\n        uint256 startTimestamp;\n        uint256 maxClaimableSupply;\n        uint256 supplyClaimed;\n        uint256 quantityLimitPerWallet;\n        bytes32 merkleRoot;\n        uint256 pricePerToken;\n        address currency;\n        string metadata;\n    }\n}\n",
+  "sourcePath": "/Users/vfadeev/Work/rarible/thirdweb-query-contracts/contracts/extension/interface/IClaimCondition.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/extension/interface/IClaimCondition.sol",
+    "exportedSymbols": {
+      "IClaimCondition": [
+        14475
+      ]
+    },
+    "id": 14476,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14456,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:33"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IClaimCondition",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 14457,
+          "nodeType": "StructuredDocumentation",
+          "src": "86:345:33",
+          "text": "  The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.\n  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten\n  or added to by the contract admin. At any moment, there is only one active claim condition."
+        },
+        "fullyImplemented": true,
+        "id": 14475,
+        "linearizedBaseContracts": [
+          14475
+        ],
+        "name": "IClaimCondition",
+        "nameLocation": "443:15:33",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IClaimCondition.ClaimCondition",
+            "id": 14474,
+            "members": [
+              {
+                "constant": false,
+                "id": 14459,
+                "mutability": "mutable",
+                "name": "startTimestamp",
+                "nameLocation": "1823:14:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1815:22:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14458,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1815:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14461,
+                "mutability": "mutable",
+                "name": "maxClaimableSupply",
+                "nameLocation": "1855:18:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1847:26:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14460,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1847:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14463,
+                "mutability": "mutable",
+                "name": "supplyClaimed",
+                "nameLocation": "1891:13:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1883:21:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14462,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1883:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14465,
+                "mutability": "mutable",
+                "name": "quantityLimitPerWallet",
+                "nameLocation": "1922:22:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1914:30:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14464,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1914:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14467,
+                "mutability": "mutable",
+                "name": "merkleRoot",
+                "nameLocation": "1962:10:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1954:18:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 14466,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1954:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14469,
+                "mutability": "mutable",
+                "name": "pricePerToken",
+                "nameLocation": "1990:13:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1982:21:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14468,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1982:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14471,
+                "mutability": "mutable",
+                "name": "currency",
+                "nameLocation": "2021:8:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "2013:16:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14470,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2013:7:33",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14473,
+                "mutability": "mutable",
+                "name": "metadata",
+                "nameLocation": "2046:8:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "2039:15:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 14472,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2039:6:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ClaimCondition",
+            "nameLocation": "1790:14:33",
+            "nodeType": "StructDefinition",
+            "scope": 14475,
+            "src": "1783:278:33",
+            "visibility": "public"
+          }
+        ],
+        "scope": 14476,
+        "src": "433:1630:33",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:2025:33"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/extension/interface/IClaimCondition.sol",
+    "exportedSymbols": {
+      "IClaimCondition": [
+        14475
+      ]
+    },
+    "id": 14476,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14456,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:33"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IClaimCondition",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 14457,
+          "nodeType": "StructuredDocumentation",
+          "src": "86:345:33",
+          "text": "  The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.\n  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten\n  or added to by the contract admin. At any moment, there is only one active claim condition."
+        },
+        "fullyImplemented": true,
+        "id": 14475,
+        "linearizedBaseContracts": [
+          14475
+        ],
+        "name": "IClaimCondition",
+        "nameLocation": "443:15:33",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IClaimCondition.ClaimCondition",
+            "id": 14474,
+            "members": [
+              {
+                "constant": false,
+                "id": 14459,
+                "mutability": "mutable",
+                "name": "startTimestamp",
+                "nameLocation": "1823:14:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1815:22:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14458,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1815:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14461,
+                "mutability": "mutable",
+                "name": "maxClaimableSupply",
+                "nameLocation": "1855:18:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1847:26:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14460,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1847:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14463,
+                "mutability": "mutable",
+                "name": "supplyClaimed",
+                "nameLocation": "1891:13:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1883:21:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14462,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1883:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14465,
+                "mutability": "mutable",
+                "name": "quantityLimitPerWallet",
+                "nameLocation": "1922:22:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1914:30:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14464,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1914:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14467,
+                "mutability": "mutable",
+                "name": "merkleRoot",
+                "nameLocation": "1962:10:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1954:18:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 14466,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1954:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14469,
+                "mutability": "mutable",
+                "name": "pricePerToken",
+                "nameLocation": "1990:13:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "1982:21:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14468,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1982:7:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14471,
+                "mutability": "mutable",
+                "name": "currency",
+                "nameLocation": "2021:8:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "2013:16:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 14470,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2013:7:33",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14473,
+                "mutability": "mutable",
+                "name": "metadata",
+                "nameLocation": "2046:8:33",
+                "nodeType": "VariableDeclaration",
+                "scope": 14474,
+                "src": "2039:15:33",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 14472,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2039:6:33",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ClaimCondition",
+            "nameLocation": "1790:14:33",
+            "nodeType": "StructDefinition",
+            "scope": 14475,
+            "src": "1783:278:33",
+            "visibility": "public"
+          }
+        ],
+        "scope": 14476,
+        "src": "433:1630:33",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:2025:33"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.12+commit.f00d7308.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2023-09-06T16:00:53.496Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "The interface `IClaimCondition` is written for thirdweb's 'Drop' contracts, which are distribution mechanisms for tokens.  A claim condition defines criteria under which accounts can mint tokens. Claim conditions can be overwritten  or added to by the contract admin. At any moment, there is only one active claim condition.",
+    "version": 1
+  }
+}
